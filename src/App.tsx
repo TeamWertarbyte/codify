@@ -1,45 +1,27 @@
 import React from "react";
 import "./App.css";
-import {
-  createMuiTheme,
-  CssBaseline,
-  MuiThemeProvider,
-  PaletteType,
-} from "@material-ui/core";
-import { SnackbarProvider } from "material-ui-snackbar-provider";
 import CodeEditor from "./components/CodeEditor";
+import { makeStyles, Typography } from "@material-ui/core";
 
-const muiTheme = (themeType: PaletteType = "light") =>
-  createMuiTheme({
-    palette: {
-      primary: {
-        main: "#005091",
-      },
-      secondary: {
-        main: "#348a31",
-      },
-      error: {
-        main: "#f44336",
-      },
-      type: themeType,
-    },
-  });
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+}));
 
 function App() {
+  const classes = useStyles();
+
   return (
-    <MuiThemeProvider theme={muiTheme()}>
-      <CssBaseline />
-      <SnackbarProvider SnackbarProps={{ autoHideDuration: 4000 }}>
-        <div className="App">
-          <header className="App-header">
-            <p>
-              Edit <code>src/App.tsx</code> and save to reload.
-            </p>
-          </header>
-          <CodeEditor />
-        </div>
-      </SnackbarProvider>
-    </MuiThemeProvider>
+    <body className={classes.root}>
+      <Typography variant={"h3"} gutterBottom>
+        My smart code
+      </Typography>
+      <CodeEditor />
+    </body>
   );
 }
 
