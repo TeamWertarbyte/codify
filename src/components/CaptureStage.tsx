@@ -8,11 +8,23 @@ const useStyles = makeStyles(({ spacing }) => ({
   },
 }));
 
-const CaptureStage = React.forwardRef((props, ref) => {
+interface Props {
+  backgroundColor: string;
+}
+
+const CaptureStage = React.forwardRef(({ backgroundColor }: Props, ref) => {
   const classes = useStyles();
 
   return (
-    <Paper ref={ref} className={classes.root} elevation={10}>
+    <Paper
+      ref={ref}
+      className={classes.root}
+      elevation={10}
+      square
+      style={{
+        backgroundColor,
+      }}
+    >
       <Typography
         variant={"h3"}
         gutterBottom
