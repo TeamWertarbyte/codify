@@ -6,16 +6,29 @@ import { saveAs } from "file-saver";
 import domtoimage from "dom-to-image-more";
 import { ChromePicker } from "react-color";
 import CaptureStage from "./components/CaptureStage";
+import { grey } from "@material-ui/core/colors";
 
 const useStyles = makeStyles(({ spacing }) => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
+    display: "grid",
+    gridTemplateColumns: "1fr",
+    gridGap: spacing(4),
   },
-  download: {
+  captureStageContainer: {
+    display: "grid",
+    placeItems: "center",
     marginTop: spacing(4),
+  },
+  options: {
+    display: "grid",
+    placeItems: "center",
+    backgroundColor: grey[300],
+    padding: spacing(2),
+  },
+  actions: {
+    display: "grid",
+    placeItems: "center",
+    padding: spacing(2),
   },
 }));
 
@@ -31,20 +44,22 @@ function App() {
   };
 
   return (
-    <body className={classes.root}>
-      <ChromePicker
-        color={backgroundColor}
-        onChange={(e) => setBackgroundColor(e.hex)}
-      />
-      <CaptureStage ref={stageRef} backgroundColor={backgroundColor} />
-      <Button
-        className={classes.download}
-        variant={"outlined"}
-        onClick={handleGenerateImage}
-      >
-        Download
-      </Button>
-    </body>
+    <div className={classes.root}>
+      <div className={classes.captureStageContainer}>
+        <CaptureStage ref={stageRef} backgroundColor={backgroundColor} />
+      </div>
+      <div className={classes.options}>
+        <ChromePicker
+          color={backgroundColor}
+          onChange={(e) => setBackgroundColor(e.hex)}
+        />
+      </div>
+      <div className={classes.actions}>
+        <Button variant={"outlined"} onClick={handleGenerateImage}>
+          Download
+        </Button>
+      </div>
+    </div>
   );
 }
 

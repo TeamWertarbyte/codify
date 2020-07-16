@@ -1,5 +1,6 @@
 import React from "react";
 import { Paper, makeStyles, Typography } from "@material-ui/core";
+import cx from "classnames";
 import CodeEditor from "./CodeEditor";
 
 const useStyles = makeStyles(({ spacing }) => ({
@@ -9,34 +10,37 @@ const useStyles = makeStyles(({ spacing }) => ({
 }));
 
 interface Props {
+  className?: string;
   backgroundColor: string;
 }
 
-const CaptureStage = React.forwardRef(({ backgroundColor }: Props, ref) => {
-  const classes = useStyles();
+const CaptureStage = React.forwardRef(
+  ({ backgroundColor, className }: Props, ref) => {
+    const classes = useStyles();
 
-  return (
-    <Paper
-      ref={ref}
-      className={classes.root}
-      elevation={10}
-      square
-      style={{
-        backgroundColor,
-      }}
-    >
-      <Typography
-        variant={"h3"}
-        gutterBottom
-        contentEditable
-        spellCheck={false}
-        suppressContentEditableWarning
+    return (
+      <Paper
+        ref={ref}
+        className={cx(classes.root, className)}
+        elevation={10}
+        square
+        style={{
+          backgroundColor,
+        }}
       >
-        Edit this cool title
-      </Typography>
-      <CodeEditor />
-    </Paper>
-  );
-});
+        <Typography
+          variant={"h3"}
+          gutterBottom
+          contentEditable
+          spellCheck={false}
+          suppressContentEditableWarning
+        >
+          Edit this cool title
+        </Typography>
+        <CodeEditor />
+      </Paper>
+    );
+  }
+);
 
 export default CaptureStage;
