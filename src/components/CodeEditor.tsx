@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: grey[700],
   },
   header: {
-    minHeight: theme.spacing(1),
     display: "flex",
     backgroundColor: grey[300],
     padding: theme.spacing(0.5),
@@ -55,7 +54,10 @@ function CodeEditor() {
           width={"700px"}
           language="javascript"
           theme="vs-dark"
-          value={`console.log("Hello World!")`}
+          value={`const fuu = () => {
+  console.log("Hello World!")
+}
+          `}
           options={{
             selectOnLineNumbers: true,
           }}
