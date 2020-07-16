@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import {
   createMuiTheme,
+  CssBaseline,
   MuiThemeProvider,
   PaletteType,
 } from "@material-ui/core";
@@ -26,6 +27,7 @@ const muiTheme = (themeType: PaletteType = "light") =>
 function App() {
   return (
     <MuiThemeProvider theme={muiTheme()}>
+      <CssBaseline />
       <SnackbarProvider SnackbarProps={{ autoHideDuration: 4000 }}>
         <div className="App">
           <header className="App-header">
