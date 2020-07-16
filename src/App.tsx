@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./App.css";
 import CodeEditor from "./components/CodeEditor";
-import { makeStyles, Typography } from "@material-ui/core";
+import { Button, makeStyles, Typography } from "@material-ui/core";
+import { saveAs } from "file-saver";
+// @ts-ignore
+import domtoimage from "dom-to-image-more";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     flexDirection: "column",
@@ -14,13 +17,28 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
+  const editorRef = useRef();
+
+  const handleGenerateImage = () => {
+    domtoimage.toBlob(editorRef.current).then((blob: Blob) => {
+      saveAs(blob, `codify-${Date.now()}.png`);
+    });
+  };
 
   return (
     <body className={classes.root}>
-      <Typography variant={"h3"} gutterBottom>
-        My smart code
+      <Typography
+        variant={"h3"}
+        gutterBottom
+        contentEditable
+        spellCheck={false}
+      >
+        Edit this cool title
       </Typography>
-      <CodeEditor />
+      <CodeEditor ref={editorRef} />
+      <Button variant={"outlined"} onClick={handleGenerateImage}>
+        Download
+      </Button>
     </body>
   );
 }
