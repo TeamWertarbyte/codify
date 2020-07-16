@@ -32,6 +32,7 @@ function App() {
         gutterBottom
         contentEditable
         spellCheck={false}
+        suppressContentEditableWarning
       >
         Edit this cool title
       </Typography>
