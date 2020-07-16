@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     width: 700,
     height: 320,
+    backgroundColor: grey[700],
   },
   header: {
     minHeight: theme.spacing(1),
@@ -34,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: red[500],
   },
   content: {
-    backgroundColor: grey[700],
     flex: 1,
   },
 }));
