@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     width: 700,
     height: 320,
     backgroundColor: grey[700],
+    marginBottom: theme.spacing(2),
   },
   header: {
     display: "flex",
