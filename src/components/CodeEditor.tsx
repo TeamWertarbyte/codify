@@ -39,11 +39,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CodeEditor = React.forwardRef((props, ref) => {
+const CodeEditor = () => {
   const classes = useStyles();
 
   return (
-    <Paper ref={ref} className={classes.root} elevation={15}>
+    <Paper className={classes.root} elevation={15}>
       <div className={classes.header}>
         <div className={cx(classes.dot, classes.red)} />
         <div className={cx(classes.dot, classes.yellow)} />
@@ -65,6 +65,6 @@ const CodeEditor = React.forwardRef((props, ref) => {
       </div>
     </Paper>
   );
-});
+};
 
 export default CodeEditor;

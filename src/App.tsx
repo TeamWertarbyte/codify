@@ -1,17 +1,20 @@
 import React, { useRef } from "react";
 import "./App.css";
-import CodeEditor from "./components/CodeEditor";
-import { Button, makeStyles, Typography } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
 import { saveAs } from "file-saver";
 // @ts-ignore
 import domtoimage from "dom-to-image-more";
+import CaptureStage from "./components/CaptureStage";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({ spacing }) => ({
   root: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+  },
+  download: {
+    marginTop: spacing(4),
   },
 }));
 
@@ -27,17 +30,12 @@ function App() {
 
   return (
     <body className={classes.root}>
-      <Typography
-        variant={"h3"}
-        gutterBottom
-        contentEditable
-        spellCheck={false}
-        suppressContentEditableWarning
+      <CaptureStage ref={editorRef} />
+      <Button
+        className={classes.download}
+        variant={"outlined"}
+        onClick={handleGenerateImage}
       >
-        Edit this cool title
-      </Typography>
-      <CodeEditor ref={editorRef} />
-      <Button variant={"outlined"} onClick={handleGenerateImage}>
         Download
       </Button>
     </body>
