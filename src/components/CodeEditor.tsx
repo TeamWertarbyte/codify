@@ -1,8 +1,11 @@
-import React from "react";
-import { Paper, makeStyles } from "@material-ui/core";
+import React, { useRef } from "react";
+import { Paper, makeStyles, Button } from "@material-ui/core";
 import { green, grey, red, yellow } from "@material-ui/core/colors";
 import Editor from "@monaco-editor/react";
 import cx from "classnames";
+// @ts-ignore
+import domtoimage from "dom-to-image-more";
+import { saveAs } from "file-saver";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,30 +44,42 @@ const useStyles = makeStyles((theme) => ({
 
 function CodeEditor() {
   const classes = useStyles();
+  const editorRef = useRef();
+
+  const handleCapture = () => {
+    domtoimage.toBlob(editorRef.current).then((blob: Blob) => {
+      saveAs(blob, "my-node.png");
+    });
+  };
 
   return (
-    <Paper className={classes.root} elevation={15}>
-      <div className={classes.header}>
-        <div className={cx(classes.dot, classes.red)} />
-        <div className={cx(classes.dot, classes.yellow)} />
-        <div className={cx(classes.dot, classes.green)} />
-      </div>
-      <div className={classes.content}>
-        <Editor
-          height={"300px"}
-          width={"700px"}
-          language="javascript"
-          theme="vs-dark"
-          value={`const fuu = () => {
+    <>
+      <Paper ref={editorRef} className={classes.root} elevation={15}>
+        <div className={classes.header}>
+          <div className={cx(classes.dot, classes.red)} />
+          <div className={cx(classes.dot, classes.yellow)} />
+          <div className={cx(classes.dot, classes.green)} />
+        </div>
+        <div className={classes.content}>
+          <Editor
+            height={"300px"}
+            width={"700px"}
+            language="javascript"
+            theme="vs-dark"
+            value={`const fuu = () => {
   console.log("Hello World!")
 }
           `}
-          options={{
-            selectOnLineNumbers: true,
-          }}
-        />
-      </div>
-    </Paper>
+            options={{
+              selectOnLineNumbers: true,
+            }}
+          />
+        </div>
+      </Paper>
+      <Button variant={"outlined"} onClick={handleCapture}>
+        Download
+      </Button>
+    </>
   );
 }
 

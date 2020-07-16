@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import CodeEditor from "./components/CodeEditor";
-import { Button, makeStyles, Typography } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +21,6 @@ function App() {
         My smart code
       </Typography>
       <CodeEditor />
-      <Button variant={"outlined"}>Download</Button>
     </body>
   );
 }
