@@ -57,8 +57,7 @@ const CodeEditor = React.forwardRef((props, ref) => {
           theme="dark"
           value={`const fuu = () => {
   console.log("Hello World!")
-}
-          `}
+}`}
           options={{
             selectOnLineNumbers: false,
           }}
