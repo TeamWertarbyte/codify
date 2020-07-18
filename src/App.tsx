@@ -7,6 +7,7 @@ import domtoimage from "dom-to-image-more";
 import { ChromePicker } from "react-color";
 import CaptureStage from "./components/CaptureStage";
 import { grey } from "@material-ui/core/colors";
+import ColorPicker from "./components/ColorPicker";
 
 const useStyles = makeStyles(({ spacing }) => ({
   root: {
@@ -35,7 +36,7 @@ const useStyles = makeStyles(({ spacing }) => ({
 function App() {
   const classes = useStyles();
   const stageRef = useRef();
-  const [backgroundColor, setBackgroundColor] = useState("#fff");
+  const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
 
   const handleGenerateImage = () => {
     domtoimage.toBlob(stageRef.current).then((blob: Blob) => {
@@ -49,9 +50,10 @@ function App() {
         <CaptureStage ref={stageRef} backgroundColor={backgroundColor} />
       </div>
       <div className={classes.options}>
-        <ChromePicker
+        <ColorPicker
+          label="Background"
           color={backgroundColor}
-          onChange={(e) => setBackgroundColor(e.hex)}
+          onChange={setBackgroundColor}
         />
       </div>
       <div className={classes.actions}>
