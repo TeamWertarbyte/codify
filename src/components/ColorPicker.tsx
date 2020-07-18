@@ -4,7 +4,6 @@ import {
   createStyles,
   Popover,
   Theme,
-  Typography,
   WithStyles,
   withStyles,
 } from "@material-ui/core";

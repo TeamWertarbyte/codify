@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import "./App.css";
-import { Button, makeStyles } from "@material-ui/core";
+import { Fab, makeStyles } from "@material-ui/core";
 import { saveAs } from "file-saver";
+import { grey } from "@material-ui/core/colors";
 // @ts-ignore
 import domtoimage from "dom-to-image-more";
-import { ChromePicker } from "react-color";
+import { Download } from "mdi-material-ui";
 import CaptureStage from "./components/CaptureStage";
-import { grey } from "@material-ui/core/colors";
 import ColorPicker from "./components/ColorPicker";
 
 const useStyles = makeStyles(({ spacing }) => ({
@@ -26,10 +26,10 @@ const useStyles = makeStyles(({ spacing }) => ({
     backgroundColor: grey[300],
     padding: spacing(2),
   },
-  actions: {
-    display: "grid",
-    placeItems: "center",
-    padding: spacing(2),
+  fab: {
+    position: "absolute",
+    bottom: spacing(2),
+    right: spacing(2),
   },
 }));
 
@@ -56,11 +56,13 @@ function App() {
           onChange={setBackgroundColor}
         />
       </div>
-      <div className={classes.actions}>
-        <Button variant={"outlined"} onClick={handleGenerateImage}>
-          Download
-        </Button>
-      </div>
+      <Fab
+        className={classes.fab}
+        onClick={handleGenerateImage}
+        color="primary"
+      >
+        <Download />
+      </Fab>
     </div>
   );
 }
