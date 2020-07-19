@@ -17,6 +17,7 @@ const useStyles = makeStyles(({ spacing }) => ({
   toolbar: {
     display: "grid",
     gridTemplateColumns: "1fr",
+    alignItems: "start",
     backgroundColor: grey[300],
     padding: spacing(1),
   },
@@ -49,7 +50,8 @@ function App() {
     <div className={classes.root}>
       <div className={classes.toolbar}>
         <ColorPicker
-          label="Background"
+          id="background"
+          tooltip="Background"
           color={backgroundColor}
           onChange={setBackgroundColor}
           icon={<FormatColorFill />}

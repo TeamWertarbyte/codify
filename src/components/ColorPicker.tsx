@@ -4,10 +4,10 @@ import {
   IconButton,
   Popover,
   Theme,
+  Tooltip,
   WithStyles,
   withStyles,
 } from "@material-ui/core";
-import cx from "classnames";
 import { ChromePicker } from "react-color";
 
 const styles = ({ palette, spacing }: Theme) =>
@@ -17,20 +17,20 @@ const styles = ({ palette, spacing }: Theme) =>
   });
 
 interface Props {
-  className?: string;
   color: string;
   onChange: (color: string) => void;
-  label: string;
+  id: string;
+  tooltip: string;
   icon: React.ReactNode;
 }
 
 const ColorPicker = ({
   classes,
-  className,
   color,
   onChange,
-  label,
+  id,
   icon,
+  tooltip,
 }: Props & WithStyles<typeof styles>) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -44,20 +44,22 @@ const ColorPicker = ({
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? `color-picker-${label}-popover` : undefined;
+  const popoverId = open ? `color-picker-${id}-popover` : undefined;
 
   return (
-    <div className={cx(classes.root, className)}>
-      <IconButton
-        aria-describedby={id}
-        className={classes.button}
-        onClick={handleClick}
-        color={open ? "primary" : "default"}
-      >
-        {icon}
-      </IconButton>
+    <>
+      <Tooltip title={tooltip} placement="right">
+        <IconButton
+          aria-describedby={popoverId}
+          className={classes.button}
+          onClick={handleClick}
+          color={open ? "primary" : "default"}
+        >
+          {icon}
+        </IconButton>
+      </Tooltip>
       <Popover
-        id={id}
+        id={popoverId}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
@@ -72,7 +74,7 @@ const ColorPicker = ({
       >
         <ChromePicker color={color} onChange={(e) => onChange(e.hex)} />
       </Popover>
-    </div>
+    </>
   );
 };
 
