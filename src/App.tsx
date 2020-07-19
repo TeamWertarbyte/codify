@@ -5,9 +5,16 @@ import { saveAs } from "file-saver";
 import { grey } from "@material-ui/core/colors";
 // @ts-ignore
 import domtoimage from "dom-to-image-more";
-import { Download, FormatColorFill, FormatColorText } from "mdi-material-ui";
+import {
+  Download,
+  FormatColorFill,
+  FormatColorText,
+  Text,
+} from "mdi-material-ui";
 import CaptureStage from "./components/CaptureStage";
 import ColorPicker from "./components/ColorPicker";
+import ToolbarToggle from "./components/ToolbarToggle";
+import { FormatListNumbers } from "mdi-material-ui/light";
 
 const useStyles = makeStyles(({ spacing }) => ({
   root: {
@@ -15,11 +22,8 @@ const useStyles = makeStyles(({ spacing }) => ({
     height: "100%",
   },
   toolbar: {
-    display: "grid",
-    gridTemplateColumns: "1fr",
-    gridTemplateRows: spacing(6),
-    alignItems: "start",
-    gridGap: spacing(1),
+    display: "flex",
+    flexDirection: "column",
     backgroundColor: grey[300],
     padding: spacing(1),
   },
@@ -42,6 +46,7 @@ function App() {
   const stageRef = useRef();
   const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
   const [fontColor, setFontColor] = useState("#000000");
+  const [showLineNumbers, setShowLineNumbers] = useState(true);
 
   const handleGenerateImage = () => {
     domtoimage.toBlob(stageRef.current).then((blob: Blob) => {
@@ -65,6 +70,13 @@ function App() {
           color={fontColor}
           onChange={setFontColor}
           icon={<FormatColorText />}
+        />
+        <ToolbarToggle
+          active={showLineNumbers}
+          tooltip="Line Numbers"
+          onChange={setShowLineNumbers}
+          activeIcon={<FormatListNumbers />}
+          inactiveIcon={<Text />}
         />
       </div>
       <div className={classes.captureStageContainer}>
