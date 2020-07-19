@@ -5,7 +5,7 @@ import { saveAs } from "file-saver";
 import { grey } from "@material-ui/core/colors";
 // @ts-ignore
 import domtoimage from "dom-to-image-more";
-import { Download } from "mdi-material-ui";
+import { Download, FormatColorFill } from "mdi-material-ui";
 import CaptureStage from "./components/CaptureStage";
 import ColorPicker from "./components/ColorPicker";
 
@@ -16,15 +16,16 @@ const useStyles = makeStyles(({ spacing }) => ({
   },
   toolbar: {
     display: "grid",
-    placeItems: "center",
+    gridTemplateColumns: "1fr",
     backgroundColor: grey[300],
-    padding: spacing(2),
+    padding: spacing(1),
   },
   captureStageContainer: {
     flex: 1,
     display: "grid",
     placeItems: "center",
     justifyItems: "center",
+    backgroundColor: grey[200],
   },
   fab: {
     position: "absolute",
@@ -51,6 +52,7 @@ function App() {
           label="Background"
           color={backgroundColor}
           onChange={setBackgroundColor}
+          icon={<FormatColorFill />}
         />
       </div>
       <div className={classes.captureStageContainer}>

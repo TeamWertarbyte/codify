@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  Button,
   createStyles,
+  IconButton,
   Popover,
   Theme,
   WithStyles,
@@ -12,10 +12,7 @@ import { ChromePicker } from "react-color";
 
 const styles = ({ palette, spacing }: Theme) =>
   createStyles({
-    root: {
-      display: "flex",
-      alignItems: "center",
-    },
+    root: {},
     button: {},
   });
 
@@ -24,6 +21,7 @@ interface Props {
   color: string;
   onChange: (color: string) => void;
   label: string;
+  icon: React.ReactNode;
 }
 
 const ColorPicker = ({
@@ -32,6 +30,7 @@ const ColorPicker = ({
   color,
   onChange,
   label,
+  icon,
 }: Props & WithStyles<typeof styles>) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -49,18 +48,14 @@ const ColorPicker = ({
 
   return (
     <div className={cx(classes.root, className)}>
-      <Button
+      <IconButton
         aria-describedby={id}
         className={classes.button}
-        size="small"
-        variant="outlined"
-        endIcon={
-          <div style={{ width: 16, height: 16, backgroundColor: color }} />
-        }
         onClick={handleClick}
+        color={open ? "primary" : "default"}
       >
-        {label}:
-      </Button>
+        {icon}
+      </IconButton>
       <Popover
         id={id}
         open={open}
