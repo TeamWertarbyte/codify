@@ -11,20 +11,20 @@ import ColorPicker from "./components/ColorPicker";
 
 const useStyles = makeStyles(({ spacing }) => ({
   root: {
-    display: "grid",
-    gridTemplateColumns: "1fr",
-    gridGap: spacing(4),
+    display: "flex",
+    height: "100%",
   },
-  captureStageContainer: {
-    display: "grid",
-    placeItems: "center",
-    marginTop: spacing(4),
-  },
-  options: {
+  toolbar: {
     display: "grid",
     placeItems: "center",
     backgroundColor: grey[300],
     padding: spacing(2),
+  },
+  captureStageContainer: {
+    flex: 1,
+    display: "grid",
+    placeItems: "center",
+    justifyItems: "center",
   },
   fab: {
     position: "absolute",
@@ -46,15 +46,15 @@ function App() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.captureStageContainer}>
-        <CaptureStage ref={stageRef} backgroundColor={backgroundColor} />
-      </div>
-      <div className={classes.options}>
+      <div className={classes.toolbar}>
         <ColorPicker
           label="Background"
           color={backgroundColor}
           onChange={setBackgroundColor}
         />
+      </div>
+      <div className={classes.captureStageContainer}>
+        <CaptureStage ref={stageRef} backgroundColor={backgroundColor} />
       </div>
       <Fab
         className={classes.fab}
