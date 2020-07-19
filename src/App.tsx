@@ -5,7 +5,7 @@ import { saveAs } from "file-saver";
 import { grey } from "@material-ui/core/colors";
 // @ts-ignore
 import domtoimage from "dom-to-image-more";
-import { Download, FormatColorFill } from "mdi-material-ui";
+import { Download, FormatColorFill, FormatColorText } from "mdi-material-ui";
 import CaptureStage from "./components/CaptureStage";
 import ColorPicker from "./components/ColorPicker";
 
@@ -17,7 +17,9 @@ const useStyles = makeStyles(({ spacing }) => ({
   toolbar: {
     display: "grid",
     gridTemplateColumns: "1fr",
+    gridTemplateRows: spacing(6),
     alignItems: "start",
+    gridGap: spacing(1),
     backgroundColor: grey[300],
     padding: spacing(1),
   },
@@ -39,6 +41,7 @@ function App() {
   const classes = useStyles();
   const stageRef = useRef();
   const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
+  const [fontColor, setFontColor] = useState("#000000");
 
   const handleGenerateImage = () => {
     domtoimage.toBlob(stageRef.current).then((blob: Blob) => {
@@ -50,15 +53,26 @@ function App() {
     <div className={classes.root}>
       <div className={classes.toolbar}>
         <ColorPicker
-          id="background"
-          tooltip="Background"
+          id="background-color"
+          tooltip="Background Color"
           color={backgroundColor}
           onChange={setBackgroundColor}
           icon={<FormatColorFill />}
         />
+        <ColorPicker
+          id="font-color"
+          tooltip="Text Color"
+          color={fontColor}
+          onChange={setFontColor}
+          icon={<FormatColorText />}
+        />
       </div>
       <div className={classes.captureStageContainer}>
-        <CaptureStage ref={stageRef} backgroundColor={backgroundColor} />
+        <CaptureStage
+          ref={stageRef}
+          backgroundColor={backgroundColor}
+          fontColor={fontColor}
+        />
       </div>
       <Fab
         className={classes.fab}

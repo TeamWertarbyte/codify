@@ -12,10 +12,11 @@ const useStyles = makeStyles(({ spacing }) => ({
 interface Props {
   className?: string;
   backgroundColor: string;
+  fontColor: string;
 }
 
 const CaptureStage = React.forwardRef(
-  ({ backgroundColor, className }: Props, ref) => {
+  ({ backgroundColor, className, fontColor }: Props, ref) => {
     const classes = useStyles();
 
     return (
@@ -34,6 +35,7 @@ const CaptureStage = React.forwardRef(
           contentEditable
           spellCheck={false}
           suppressContentEditableWarning
+          style={{ color: fontColor }}
         >
           Edit this cool title
         </Typography>
