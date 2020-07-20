@@ -40,10 +40,11 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
 }));
 
 interface Props {
+  lightMode: boolean;
   showLineNumbers: boolean;
 }
 
-const CodeEditor = ({ showLineNumbers }: Props) => {
+const CodeEditor = ({ lightMode, showLineNumbers }: Props) => {
   const classes = useStyles();
 
   return (
@@ -58,7 +59,7 @@ const CodeEditor = ({ showLineNumbers }: Props) => {
           height={"300px"}
           width={"700px"}
           language="javascript"
-          theme="dark"
+          theme={lightMode ? "light" : "dark"}
           value={`const fuu = () => {
   console.log("Hello World!")
 }`}

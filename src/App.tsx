@@ -9,6 +9,8 @@ import {
   Download,
   FormatColorFill,
   FormatColorText,
+  Lightbulb,
+  LightbulbOutline,
   Text,
 } from "mdi-material-ui";
 import CaptureStage from "./components/CaptureStage";
@@ -47,6 +49,7 @@ function App() {
   const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
   const [fontColor, setFontColor] = useState("#000000");
   const [showLineNumbers, setShowLineNumbers] = useState(true);
+  const [lightMode, setLightMode] = useState(true);
 
   const handleGenerateImage = () => {
     domtoimage.toBlob(stageRef.current).then((blob: Blob) => {
@@ -78,12 +81,20 @@ function App() {
           activeIcon={<FormatListNumbers />}
           inactiveIcon={<Text />}
         />
+        <ToolbarToggle
+          active={lightMode}
+          tooltip={lightMode ? "Dark Mode" : "Light Mode"}
+          onChange={setLightMode}
+          activeIcon={<LightbulbOutline />}
+          inactiveIcon={<Lightbulb />}
+        />
       </div>
       <div className={classes.captureStageContainer}>
         <CaptureStage
           ref={stageRef}
           backgroundColor={backgroundColor}
           fontColor={fontColor}
+          lightMode={lightMode}
           showLineNumbers={showLineNumbers}
         />
       </div>
