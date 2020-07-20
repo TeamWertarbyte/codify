@@ -30,6 +30,8 @@ jobs:
         run: |
           yarn
           yarn build
+        env:
+          PUBLIC_URL: https://teamwertarbyte.github.io/codify
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
