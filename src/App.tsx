@@ -17,6 +17,7 @@ import CaptureStage from "./components/CaptureStage";
 import ColorPicker from "./components/ColorPicker";
 import ToolbarToggle from "./components/ToolbarToggle";
 import { FormatListNumbers } from "mdi-material-ui/light";
+import LanguagePicker from "./components/LanguagePicker";
 
 const useStyles = makeStyles(({ spacing }: Theme) => ({
   root: {
@@ -89,6 +90,7 @@ function App() {
           inactiveIcon={<Lightbulb />}
         />
       </div>
+      <LanguagePicker />
       <div className={classes.captureStageContainer}>
         <CaptureStage
           ref={stageRef}
