@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, ReactNode } from "react";
+import React, { ChangeEvent, ReactNode } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   FormControl,
@@ -9,32 +9,40 @@ import {
 } from "@material-ui/core";
 
 const useStyles = makeStyles(({ spacing }: Theme) => ({
-  root: {},
+  formControl: {
+    margin: spacing(1),
+    minWidth: 120,
+  },
 }));
 
-const languages = ["javascript", "java", "python"];
+interface Props {
+  language: string;
+  languageSet: string[];
+  onChange: (language: string) => void;
+}
 
-const LanguagePicker = () => {
+const LanguagePicker = ({ language, languageSet, onChange }: Props) => {
   const classes = useStyles();
-  const [language, setLanguage] = useState("javascript");
 
   const handleChange = (event: ChangeEvent<ReactNode>) => {
     const target = event.target as HTMLSelectElement;
-    setLanguage(target.value);
+    onChange(target.value);
   };
 
   return (
-    <FormControl variant={"outlined"}>
+    <FormControl className={classes.formControl} variant={"outlined"}>
       <InputLabel shrink id={"language-select-label"}>
         Language
       </InputLabel>
       <Select
-        labelId="language-select-label"
-        id="language-select"
+        inputProps={{
+          name: "language",
+          id: "language-select-label",
+        }}
         onChange={(event) => handleChange(event)}
         value={language}
       >
-        {languages.map((language, index) => (
+        {languageSet.map((language, index) => (
           <MenuItem key={index} value={language}>
             {language}
           </MenuItem>

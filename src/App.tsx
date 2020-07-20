@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./App.css";
-import { Fab, makeStyles, Theme } from "@material-ui/core";
+import { Fab, makeStyles, Paper, Theme } from "@material-ui/core";
 import { saveAs } from "file-saver";
 import { grey } from "@material-ui/core/colors";
 // @ts-ignore
@@ -42,6 +42,9 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
     bottom: spacing(2),
     right: spacing(2),
   },
+  options: {
+    padding: spacing(1),
+  },
 }));
 
 function App() {
@@ -51,6 +54,9 @@ function App() {
   const [fontColor, setFontColor] = useState("#000000");
   const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [lightMode, setLightMode] = useState(true);
+  const [language, setLanguage] = useState("javascript");
+
+  const languageSet = ["javascript", "java", "python"]; // TODO: Replace with all supported languages
 
   const handleGenerateImage = () => {
     domtoimage.toBlob(stageRef.current).then((blob: Blob) => {
@@ -90,12 +96,19 @@ function App() {
           inactiveIcon={<Lightbulb />}
         />
       </div>
-      <LanguagePicker />
       <div className={classes.captureStageContainer}>
+        <Paper className={classes.options}>
+          <LanguagePicker
+            language={language}
+            languageSet={languageSet}
+            onChange={setLanguage}
+          />
+        </Paper>
         <CaptureStage
           ref={stageRef}
           backgroundColor={backgroundColor}
           fontColor={fontColor}
+          language={language}
           lightMode={lightMode}
           showLineNumbers={showLineNumbers}
         />
