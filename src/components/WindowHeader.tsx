@@ -3,7 +3,13 @@ import { createStyles, IconButton, Theme } from "@material-ui/core";
 import cx from "classnames";
 import { green, grey, red, yellow } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
-import { WindowMinimize, WindowMaximize, WindowClose } from "mdi-material-ui";
+import {
+  ArrowExpand,
+  WindowMinimize,
+  WindowMaximize,
+  WindowClose,
+  CloseCircle,
+} from "mdi-material-ui";
 
 const useStyles = makeStyles(({ spacing }: Theme) =>
   createStyles({
@@ -17,6 +23,11 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
     windows10: {
       backgroundColor: "#fff",
       justifyContent: "flex-end",
+    },
+    linuxMint: {
+      backgroundColor: "#d3d4cf",
+      justifyContent: "flex-end",
+      padding: spacing(0.5),
     },
     dot: {
       borderRadius: "50%",
@@ -33,12 +44,15 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
     red: {
       backgroundColor: red[500],
     },
+    square: {
+      borderRadius: 0,
+    },
   })
 );
 
 interface Props {
   className?: string;
-  variant?: "macOS" | "windows10";
+  variant?: "macOS" | "windows10" | "linuxMint";
 }
 
 const WindowHeader = ({ className, variant = "windows10" }: Props) => {
@@ -56,14 +70,28 @@ const WindowHeader = ({ className, variant = "windows10" }: Props) => {
     case "windows10":
       return (
         <div className={cx(classes.root, classes.windows10, className)}>
-          <IconButton size={"small"} style={{ borderRadius: 0 }}>
+          <IconButton size={"small"} className={classes.square}>
             <WindowMinimize />
           </IconButton>
-          <IconButton size={"small"} style={{ borderRadius: 0 }}>
+          <IconButton size={"small"} className={classes.square}>
             <WindowMaximize />
           </IconButton>
-          <IconButton size={"small"} style={{ borderRadius: 0 }}>
+          <IconButton size={"small"} className={classes.square}>
             <WindowClose />
+          </IconButton>
+        </div>
+      );
+    case "linuxMint":
+      return (
+        <div className={cx(classes.root, classes.linuxMint, className)}>
+          <IconButton size={"small"}>
+            <WindowMinimize fontSize={"small"} />
+          </IconButton>
+          <IconButton size={"small"}>
+            <ArrowExpand fontSize={"small"} />
+          </IconButton>
+          <IconButton size={"small"}>
+            <CloseCircle fontSize={"small"} style={{ color: "#78b375" }} />
           </IconButton>
         </div>
       );
