@@ -1,21 +1,9 @@
 import React, { ChangeEvent, useState, ReactNode } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Theme,
-} from "@material-ui/core";
-
-const useStyles = makeStyles(({ spacing }: Theme) => ({
-  root: {},
-}));
+import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 
 const languages = ["javascript", "java", "python"];
 
 const LanguagePicker = () => {
-  const classes = useStyles();
   const [language, setLanguage] = useState("javascript");
 
   const handleChange = (event: ChangeEvent<ReactNode>) => {
