@@ -13,10 +13,11 @@ interface Props {
   className?: string;
   backgroundColor: string;
   fontColor: string;
+  showLineNumbers: boolean;
 }
 
 const CaptureStage = React.forwardRef(
-  ({ backgroundColor, className, fontColor }: Props, ref) => {
+  ({ backgroundColor, className, fontColor, showLineNumbers }: Props, ref) => {
     const classes = useStyles();
 
     return (
@@ -39,7 +40,7 @@ const CaptureStage = React.forwardRef(
         >
           Edit this cool title
         </Typography>
-        <CodeEditor />
+        <CodeEditor showLineNumbers={showLineNumbers} />
       </Paper>
     );
   }

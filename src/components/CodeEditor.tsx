@@ -1,10 +1,10 @@
 import React from "react";
-import { Paper, makeStyles } from "@material-ui/core";
+import { Paper, makeStyles, Theme } from "@material-ui/core";
 import { green, grey, red, yellow } from "@material-ui/core/colors";
 import Editor from "@monaco-editor/react";
 import cx from "classnames";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ spacing }: Theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
@@ -12,18 +12,18 @@ const useStyles = makeStyles((theme) => ({
     width: 700,
     height: 320,
     backgroundColor: grey[700],
-    marginBottom: theme.spacing(2),
+    marginBottom: spacing(2),
   },
   header: {
     display: "flex",
     backgroundColor: grey[300],
-    padding: theme.spacing(0.5),
+    padding: spacing(0.5),
   },
   dot: {
     borderRadius: "50%",
-    margin: theme.spacing(0.25),
-    height: theme.spacing(1),
-    width: theme.spacing(1),
+    margin: spacing(0.25),
+    height: spacing(1),
+    width: spacing(1),
   },
   green: {
     backgroundColor: green[500],
@@ -39,7 +39,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CodeEditor = () => {
+interface Props {
+  showLineNumbers: boolean;
+}
+
+const CodeEditor = ({ showLineNumbers }: Props) => {
   const classes = useStyles();
 
   return (
@@ -60,6 +64,7 @@ const CodeEditor = () => {
 }`}
           options={{
             selectOnLineNumbers: false,
+            lineNumbers: showLineNumbers ? "on" : "off",
           }}
         />
       </div>

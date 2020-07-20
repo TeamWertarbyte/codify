@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./App.css";
-import { Fab, makeStyles } from "@material-ui/core";
+import { Fab, makeStyles, Theme } from "@material-ui/core";
 import { saveAs } from "file-saver";
 import { grey } from "@material-ui/core/colors";
 // @ts-ignore
@@ -16,7 +16,7 @@ import ColorPicker from "./components/ColorPicker";
 import ToolbarToggle from "./components/ToolbarToggle";
 import { FormatListNumbers } from "mdi-material-ui/light";
 
-const useStyles = makeStyles(({ spacing }) => ({
+const useStyles = makeStyles(({ spacing }: Theme) => ({
   root: {
     display: "flex",
     height: "100%",
@@ -84,6 +84,7 @@ function App() {
           ref={stageRef}
           backgroundColor={backgroundColor}
           fontColor={fontColor}
+          showLineNumbers={showLineNumbers}
         />
       </div>
       <Fab
