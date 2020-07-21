@@ -4,7 +4,7 @@
 </p>
 <h1 align="center">Codify</h1>
 <div align="center">
-Send your beautiful code snippets to a photoshoot!
+Send your beautiful code snippets to a photoshoot!<br/>
   
 <img src="https://github.com/TeamWertarbyte/codify/workflows/Build%20and%20Deploy/badge.svg" />
 </div>
