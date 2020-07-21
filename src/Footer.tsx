@@ -40,7 +40,7 @@ const Footer = ({ classes, className }: Props & WithStyles<typeof styles>) => {
         Version {version}
       </Typography>
       <Typography variant={"caption"}>
-        Copyright © 2020{" "}
+        Copyright © {new Date().getFullYear()}{" "}
         <a
           href={"https://wertarbyte.com/"}
           target={"_blank"}
