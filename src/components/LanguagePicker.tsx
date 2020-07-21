@@ -67,16 +67,13 @@ const LanguagePicker = ({
   return (
     <Picker id={id} icon={icon} tooltip={tooltip}>
       <FormControl className={classes.formControl} variant={"outlined"}>
-        <InputLabel shrink id={"language-select-label"}>
-          Language
-        </InputLabel>
+        <InputLabel id={"language-select-label"}>Language</InputLabel>
         <Select
-          inputProps={{
-            name: "language",
-            id: "language-select-label",
-          }}
+          labelId="language-select-label"
+          id="language-select"
           onChange={(event) => handleChange(event)}
           value={language}
+          label="Language"
         >
           {languages.map(({ id, alias }, index) => (
             <MenuItem key={id} value={id}>
