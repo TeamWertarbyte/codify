@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { createRef, useRef, useState } from "react";
 import "./App.css";
 import { Fab, makeStyles, Theme } from "@material-ui/core";
 import { saveAs } from "file-saver";
@@ -51,6 +51,7 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
 
 function App() {
   const classes = useStyles();
+  const appRef = createRef<HTMLDivElement>();
   const stageRef = useRef();
   const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
   const [fontColor, setFontColor] = useState("#000000");
@@ -70,7 +71,7 @@ function App() {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} ref={appRef}>
       <div className={classes.toolbar}>
         <ColorPicker
           id="background-color"
