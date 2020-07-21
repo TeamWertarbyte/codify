@@ -1,17 +1,20 @@
-![Codify logo](public/logo192.png)
-
-# Codify
-
-Sent your beautiful code snippets to a photoshoot
-
-![Build and Deploy](https://github.com/TeamWertarbyte/codify/workflows/Build%20and%20Deploy/badge.svg)
+<p align="center">
+  <a href="https://teamwertarbyte.github.io/codify/" rel="noopener" target="_blank">
+<img src="public/logo192.png" alt="Codify logo" /></a>
+</p>
+<h1 align="center">Codify</h1>
+<div align="center">
+Send your beautiful code snippets to a photoshoot!
+  
+<img src="https://github.com/TeamWertarbyte/codify/workflows/Build%20and%20Deploy/badge.svg" />
+</div>
 
 ## Usage
 
-1. Visit https://teamwertarbyte.github.io/codify/ to enter your code
-2. Give a cool title
-3. Tweak the design via the left toolbar
-4. Download your snap
-5. Post it on twitter
-6. ???
-7. Profit
+1. :computer: Visit https://teamwertarbyte.github.io/codify/ and enter your code
+2. :label: Give it a cool title
+3. :art: Tweak the design via the left toolbar
+4. :floppy_disk: Download your snapshot
+5. :bird: Post it on Twitter
+6. :unicorn: ???
+7. :tada: Profit
