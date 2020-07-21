@@ -1,3 +1,5 @@
+![Codify logo](public/logo192.png)
+
 # Codify
 
 Sent your beautiful code snippets to a photoshoot
