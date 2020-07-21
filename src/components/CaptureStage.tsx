@@ -13,6 +13,7 @@ interface Props {
   className?: string;
   backgroundColor: string;
   fontColor: string;
+  fontFamily: string;
   language: string;
   lightMode: boolean;
   os: "macOS" | "windows10" | "linuxMint";
@@ -25,6 +26,7 @@ const CaptureStage = React.forwardRef(
       backgroundColor,
       className,
       fontColor,
+      fontFamily,
       language,
       lightMode,
       os,
@@ -50,7 +52,7 @@ const CaptureStage = React.forwardRef(
           contentEditable
           spellCheck={false}
           suppressContentEditableWarning
-          style={{ color: fontColor }}
+          style={{ color: fontColor, fontFamily: fontFamily }}
         >
           Edit this cool title
         </Typography>

@@ -6,6 +6,7 @@ import { grey } from "@material-ui/core/colors";
 // @ts-ignore
 import domtoimage from "dom-to-image-more";
 import {
+  Alphabetical,
   CodeBraces,
   Download,
   FormatColorFill,
@@ -20,6 +21,7 @@ import ToolbarToggle from "./components/ToolbarToggle";
 import { FormatListNumbers } from "mdi-material-ui/light";
 import LanguagePicker from "./components/LanguagePicker";
 import OSPicker from "./components/OSPicker";
+import FontPicker from "./components/FontPicker";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -68,6 +70,9 @@ function App() {
     "windows10"
   );
   const [language, setLanguage] = useState<string>("javascript");
+
+  const fontFamilies = ["Segoe UI", "Roboto", "Arial"];
+  const [fontFamily, setFontFamily] = useState<string>(fontFamilies[1]);
 
   const handleGenerateImage = () => {
     domtoimage.toBlob(stageRef.current).then((blob: Blob) => {
@@ -122,12 +127,21 @@ function App() {
             inactiveIcon={<Lightbulb />}
           />
           <OSPicker id={"operating-system"} onChange={setOS} />
+          <FontPicker
+            id="font-family"
+            tooltip="Font family"
+            fontFamily={fontFamily}
+            fontFamilies={fontFamilies}
+            onChange={setFontFamily}
+            icon={<Alphabetical />}
+          />
         </div>
         <div className={classes.captureStageContainer}>
           <CaptureStage
             ref={stageRef}
             backgroundColor={backgroundColor}
             fontColor={fontColor}
+            fontFamily={fontFamily}
             language={language}
             lightMode={lightMode}
             os={os}
