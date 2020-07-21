@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "https://teamwertarbyte.github.io/codify/static/css/main.36a08c74.chunk.css",
-    "main.js": "https://teamwertarbyte.github.io/codify/static/js/main.666a9a2d.chunk.js",
-    "main.js.map": "https://teamwertarbyte.github.io/codify/static/js/main.666a9a2d.chunk.js.map",
+    "main.js": "https://teamwertarbyte.github.io/codify/static/js/main.5844e334.chunk.js",
+    "main.js.map": "https://teamwertarbyte.github.io/codify/static/js/main.5844e334.chunk.js.map",
     "runtime-main.js": "https://teamwertarbyte.github.io/codify/static/js/runtime-main.32b31337.js",
     "runtime-main.js.map": "https://teamwertarbyte.github.io/codify/static/js/runtime-main.32b31337.js.map",
-    "static/js/2.ada142b1.chunk.js": "https://teamwertarbyte.github.io/codify/static/js/2.ada142b1.chunk.js",
-    "static/js/2.ada142b1.chunk.js.map": "https://teamwertarbyte.github.io/codify/static/js/2.ada142b1.chunk.js.map",
+    "static/js/2.d953d792.chunk.js": "https://teamwertarbyte.github.io/codify/static/js/2.d953d792.chunk.js",
+    "static/js/2.d953d792.chunk.js.map": "https://teamwertarbyte.github.io/codify/static/js/2.d953d792.chunk.js.map",
     "editor.worker.js": "https://teamwertarbyte.github.io/codify/editor.worker.js",
     "editor.worker.js.map": "https://teamwertarbyte.github.io/codify/editor.worker.js.map",
     "index.html": "https://teamwertarbyte.github.io/codify/index.html",
     "json.worker.js": "https://teamwertarbyte.github.io/codify/json.worker.js",
     "json.worker.js.map": "https://teamwertarbyte.github.io/codify/json.worker.js.map",
-    "precache-manifest.4c3ad4d65a19ac262ef02f65ba1a9a8f.js": "https://teamwertarbyte.github.io/codify/precache-manifest.4c3ad4d65a19ac262ef02f65ba1a9a8f.js",
+    "precache-manifest.e01bd467eb46e5a59b4db012eb5fa16a.js": "https://teamwertarbyte.github.io/codify/precache-manifest.e01bd467eb46e5a59b4db012eb5fa16a.js",
     "service-worker.js": "https://teamwertarbyte.github.io/codify/service-worker.js",
     "static/css/main.36a08c74.chunk.css.map": "https://teamwertarbyte.github.io/codify/static/css/main.36a08c74.chunk.css.map",
-    "static/js/2.ada142b1.chunk.js.LICENSE.txt": "https://teamwertarbyte.github.io/codify/static/js/2.ada142b1.chunk.js.LICENSE.txt"
+    "static/js/2.d953d792.chunk.js.LICENSE.txt": "https://teamwertarbyte.github.io/codify/static/js/2.d953d792.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.32b31337.js",
-    "static/js/2.ada142b1.chunk.js",
+    "static/js/2.d953d792.chunk.js",
     "static/css/main.36a08c74.chunk.css",
-    "static/js/main.666a9a2d.chunk.js"
+    "static/js/main.5844e334.chunk.js"
   ]
 }
