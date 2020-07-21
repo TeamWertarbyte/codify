@@ -11,7 +11,7 @@ Send your beautiful code snippets to a photoshoot!<br/>
 
 ## Usage
 
-1. :computer: Visit https://teamwertarbyte.github.io/codify/ and enter your code
+1. :computer: Open [Codify](https://teamwertarbyte.github.io/codify/) and enter your code
 2. :label: Give it a cool title
 3. :art: Tweak the design via the left toolbar
 4. :floppy_disk: Download your snapshot
