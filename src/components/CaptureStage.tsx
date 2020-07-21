@@ -7,9 +7,6 @@ const useStyles = makeStyles(({ spacing }) => ({
   root: {
     padding: spacing(8),
   },
-  dark: {
-    backgroundColor: "#54799D",
-  },
 }));
 
 interface Props {
@@ -37,12 +34,10 @@ const CaptureStage = React.forwardRef(
   ) => {
     const classes = useStyles();
 
-    console.log(lightMode);
-
     return (
       <Paper
         ref={ref}
-        className={cx(classes.root, className, { [classes.dark]: !lightMode })}
+        className={cx(classes.root, className)}
         elevation={10}
         square
         style={{

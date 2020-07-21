@@ -111,7 +111,13 @@ function App() {
           <ToolbarToggle
             active={lightMode}
             tooltip={lightMode ? "Dark Mode" : "Light Mode"}
-            onChange={setLightMode}
+            onChange={(lightMode) => {
+              setLightMode(lightMode);
+              if (lightMode === false) {
+                setBackgroundColor("#383839");
+                setFontColor("#d3d3d3");
+              }
+            }}
             activeIcon={<LightbulbOutline />}
             inactiveIcon={<Lightbulb />}
           />
@@ -120,8 +126,8 @@ function App() {
         <div className={classes.captureStageContainer}>
           <CaptureStage
             ref={stageRef}
-            backgroundColor={lightMode ? backgroundColor : "#353535"}
-            fontColor={lightMode ? fontColor : "#d1d2d3"}
+            backgroundColor={backgroundColor}
+            fontColor={fontColor}
             language={language}
             lightMode={lightMode}
             os={os}
