@@ -21,6 +21,7 @@ import { FormatListNumbers } from "mdi-material-ui/light";
 import LanguagePicker from "./components/LanguagePicker";
 import OSPicker from "./components/OSPicker";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const useStyles = makeStyles(({ spacing }: Theme) => ({
   root: {
@@ -49,7 +50,7 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
   },
   fab: {
     position: "absolute",
-    bottom: spacing(2),
+    bottom: spacing(6),
     right: spacing(2),
   },
   options: {
@@ -129,6 +130,7 @@ function App() {
           />
         </div>
       </div>
+      <Footer />
       <Fab
         className={classes.fab}
         onClick={handleGenerateImage}
