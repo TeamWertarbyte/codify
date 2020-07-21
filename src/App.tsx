@@ -1,11 +1,12 @@
 import React, { useRef, useState } from "react";
 import "./App.css";
-import { Fab, makeStyles, Paper, Theme } from "@material-ui/core";
+import { Fab, makeStyles, Theme } from "@material-ui/core";
 import { saveAs } from "file-saver";
 import { grey } from "@material-ui/core/colors";
 // @ts-ignore
 import domtoimage from "dom-to-image-more";
 import {
+  CodeBraces,
   Download,
   FormatColorFill,
   FormatColorText,
@@ -81,6 +82,14 @@ function App() {
           onChange={setFontColor}
           icon={<FormatColorText />}
         />
+        <LanguagePicker
+          id="code-language"
+          tooltip="Code language"
+          language={language}
+          languageSet={languageSet}
+          onChange={setLanguage}
+          icon={<CodeBraces />}
+        />
         <ToolbarToggle
           active={showLineNumbers}
           tooltip="Line Numbers"
@@ -97,13 +106,6 @@ function App() {
         />
       </div>
       <div className={classes.captureStageContainer}>
-        <Paper className={classes.options}>
-          <LanguagePicker
-            language={language}
-            languageSet={languageSet}
-            onChange={setLanguage}
-          />
-        </Paper>
         <CaptureStage
           ref={stageRef}
           backgroundColor={backgroundColor}

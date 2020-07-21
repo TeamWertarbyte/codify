@@ -1,14 +1,7 @@
 import React from "react";
-import {
-  createStyles,
-  IconButton,
-  Popover,
-  Theme,
-  Tooltip,
-  WithStyles,
-  withStyles,
-} from "@material-ui/core";
+import { createStyles, Theme, WithStyles, withStyles } from "@material-ui/core";
 import { ChromePicker } from "react-color";
+import Picker from "./Picker";
 
 const styles = ({ palette, spacing }: Theme) =>
   createStyles({
@@ -32,49 +25,10 @@ const ColorPicker = ({
   icon,
   tooltip,
 }: Props & WithStyles<typeof styles>) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  // @ts-ignore
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-  const popoverId = open ? `color-picker-${id}-popover` : undefined;
-
   return (
-    <>
-      <Tooltip title={tooltip} placement="right">
-        <IconButton
-          aria-describedby={popoverId}
-          className={classes.button}
-          onClick={handleClick}
-          color={open ? "primary" : "default"}
-        >
-          {icon}
-        </IconButton>
-      </Tooltip>
-      <Popover
-        id={popoverId}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "center",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: "center",
-          horizontal: "left",
-        }}
-      >
-        <ChromePicker color={color} onChange={(e) => onChange(e.hex)} />
-      </Popover>
-    </>
+    <Picker id={id} classes={classes} icon={icon} tooltip={tooltip}>
+      <ChromePicker color={color} onChange={(e) => onChange(e.hex)} />
+    </Picker>
   );
 };
 
