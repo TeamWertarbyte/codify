@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   MenuSwap,
   WindowMinimize,
-  WindowMaximize,
+  SquareOutline,
   WindowClose,
   CloseCircle,
 } from "mdi-material-ui";
@@ -18,7 +18,8 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
     },
     macOS: {
       backgroundColor: grey[300],
-      padding: spacing(0.5),
+      backgroundImage: `linear-gradient(to bottom, #cecece, #b7b7b7)`,
+      padding: spacing(1),
     },
     windows10: {
       backgroundColor: "#fff",
@@ -29,14 +30,23 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
       justifyContent: "flex-end",
       padding: spacing(0.5),
     },
+    macOSDivider: {
+      backgroundColor: "#141414",
+    },
+    macButton: {
+      padding: spacing(0.25),
+    },
     mintDivider: {
       backgroundColor: "#141414",
     },
+    windowsDivider: {
+      backgroundColor: grey[300],
+    },
     dot: {
       borderRadius: "50%",
-      margin: spacing(0.25),
-      height: spacing(1),
-      width: spacing(1),
+      margin: spacing(0.3),
+      height: spacing(1.125),
+      width: spacing(1.125),
     },
     green: {
       backgroundColor: green[500],
@@ -49,11 +59,23 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
     },
     square: {
       borderRadius: 0,
+      padding: spacing(1, 2, 1, 2),
     },
-    space: {
+    spaceMint: {
       display: "flex",
       justifyContent: "space-between",
       width: spacing(10),
+    },
+    spaceWindows: {
+      display: "flex",
+      justifyContent: "space-between",
+      width: spacing(20),
+    },
+    windowsClose: {
+      "&:hover": {
+        backgroundColor: red[500],
+        color: "white",
+      },
     },
   })
 );
@@ -70,30 +92,44 @@ const WindowHeader = ({ className, variant }: Props) => {
     case "macOS":
       return (
         <div className={cx(classes.root, classes.macOS, className)}>
-          <div className={cx(classes.dot, classes.red)} />
-          <div className={cx(classes.dot, classes.yellow)} />
-          <div className={cx(classes.dot, classes.green)} />
+          <IconButton className={classes.macButton}>
+            <div className={cx(classes.dot, classes.red)} />
+          </IconButton>
+          <IconButton className={classes.macButton}>
+            <div className={cx(classes.dot, classes.yellow)} />
+          </IconButton>
+          <IconButton className={classes.macButton}>
+            <div className={cx(classes.dot, classes.green)} />
+          </IconButton>
         </div>
       );
     case "windows10":
       return (
-        <div className={cx(classes.root, classes.windows10, className)}>
-          <IconButton size={"small"} className={classes.square}>
-            <WindowMinimize />
-          </IconButton>
-          <IconButton size={"small"} className={classes.square}>
-            <WindowMaximize />
-          </IconButton>
-          <IconButton size={"small"} className={classes.square}>
-            <WindowClose />
-          </IconButton>
-        </div>
+        <>
+          <div className={cx(classes.root, classes.windows10, className)}>
+            <div className={classes.spaceWindows}>
+              <IconButton size={"small"} className={classes.square}>
+                <WindowMinimize style={{ fontSize: 18 }} />
+              </IconButton>
+              <IconButton size={"small"} className={classes.square}>
+                <SquareOutline style={{ fontSize: 16 }} />
+              </IconButton>
+              <IconButton
+                size={"small"}
+                className={cx(classes.square, classes.windowsClose)}
+              >
+                <WindowClose style={{ fontSize: 18 }} />
+              </IconButton>
+            </div>
+          </div>
+          <Divider className={classes.windowsDivider} />
+        </>
       );
     case "linuxMint":
       return (
         <>
           <div className={cx(classes.root, classes.linuxMint, className)}>
-            <div className={classes.space}>
+            <div className={classes.spaceMint}>
               <IconButton size={"small"}>
                 <WindowMinimize
                   fontSize={"small"}

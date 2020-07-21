@@ -65,7 +65,7 @@ function App() {
   const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [lightMode, setLightMode] = useState(true);
   const [os, setOS] = useState<"macOS" | "windows10" | "linuxMint">(
-    "linuxMint"
+    "windows10"
   );
   const [language, setLanguage] = useState<string>("javascript");
 
