@@ -1,0 +1,129 @@
+import React, { useRef, useState } from "react";
+import "./App.css";
+import { Fab, makeStyles, Theme } from "@material-ui/core";
+import { saveAs } from "file-saver";
+import { grey } from "@material-ui/core/colors";
+// @ts-ignore
+import domtoimage from "dom-to-image-more";
+import {
+  CodeBraces,
+  Download,
+  FormatColorFill,
+  FormatColorText,
+  Lightbulb,
+  LightbulbOutline,
+  Text,
+} from "mdi-material-ui";
+import CaptureStage from "./components/CaptureStage";
+import ColorPicker from "./components/ColorPicker";
+import ToolbarToggle from "./components/ToolbarToggle";
+import { FormatListNumbers } from "mdi-material-ui/light";
+import LanguagePicker from "./components/LanguagePicker";
+
+const useStyles = makeStyles(({ spacing }: Theme) => ({
+  root: {
+    display: "flex",
+    height: "100%",
+  },
+  toolbar: {
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: grey[300],
+    padding: spacing(1),
+  },
+  captureStageContainer: {
+    flex: 1,
+    display: "grid",
+    placeItems: "center",
+    justifyItems: "center",
+    backgroundColor: grey[200],
+  },
+  fab: {
+    position: "absolute",
+    bottom: spacing(2),
+    right: spacing(2),
+  },
+  options: {
+    padding: spacing(1),
+  },
+}));
+
+function App() {
+  const classes = useStyles();
+  const stageRef = useRef();
+  const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
+  const [fontColor, setFontColor] = useState("#000000");
+  const [showLineNumbers, setShowLineNumbers] = useState(true);
+  const [lightMode, setLightMode] = useState(true);
+  const [language, setLanguage] = useState("javascript");
+
+  const languageSet = ["javascript", "java", "python"]; // TODO: Replace with all supported languages
+
+  const handleGenerateImage = () => {
+    domtoimage.toBlob(stageRef.current).then((blob: Blob) => {
+      saveAs(blob, `codify-${Date.now()}.png`);
+    });
+  };
+
+  return (
+    <div className={classes.root}>
+      <div className={classes.toolbar}>
+        <ColorPicker
+          id="background-color"
+          tooltip="Background Color"
+          color={backgroundColor}
+          onChange={setBackgroundColor}
+          icon={<FormatColorFill />}
+        />
+        <ColorPicker
+          id="font-color"
+          tooltip="Text Color"
+          color={fontColor}
+          onChange={setFontColor}
+          icon={<FormatColorText />}
+        />
+        <LanguagePicker
+          id="code-language"
+          tooltip="Code language"
+          language={language}
+          languageSet={languageSet}
+          onChange={setLanguage}
+          icon={<CodeBraces />}
+        />
+        <ToolbarToggle
+          active={showLineNumbers}
+          tooltip="Line Numbers"
+          onChange={setShowLineNumbers}
+          activeIcon={<FormatListNumbers />}
+          inactiveIcon={<Text />}
+        />
+        <ToolbarToggle
+          active={lightMode}
+          tooltip={lightMode ? "Dark Mode" : "Light Mode"}
+          onChange={setLightMode}
+          activeIcon={<LightbulbOutline />}
+          inactiveIcon={<Lightbulb />}
+        />
+      </div>
+      <div className={classes.captureStageContainer}>
+        <CaptureStage
+          ref={stageRef}
+          backgroundColor={backgroundColor}
+          fontColor={fontColor}
+          language={language}
+          lightMode={lightMode}
+          showLineNumbers={showLineNumbers}
+        />
+      </div>
+      <Fab
+        className={classes.fab}
+        onClick={handleGenerateImage}
+        color="primary"
+      >
+        <Download />
+      </Fab>
+    </div>
+  );
+}
+
+export default App;
