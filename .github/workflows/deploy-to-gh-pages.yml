@@ -3,8 +3,7 @@ on:
   push:
     branches:
       - master
-      - initial # for initial development
-      - gh-actions # for testing
+      - develop
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
