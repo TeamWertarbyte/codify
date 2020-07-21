@@ -37,12 +37,13 @@ const CodeEditor = ({ language, lightMode, showLineNumbers }: Props) => {
           width={"700px"}
           language={language}
           theme={lightMode ? "light" : "dark"}
-          value={`const fuu = () => {
+          value={`const fun = () => {
   console.log("Hello World!")
 }`}
           options={{
             selectOnLineNumbers: false,
             lineNumbers: showLineNumbers ? "on" : "off",
+            minimap: { enabled: false },
           }}
         />
       </div>
