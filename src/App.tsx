@@ -20,11 +20,17 @@ import ToolbarToggle from "./components/ToolbarToggle";
 import { FormatListNumbers } from "mdi-material-ui/light";
 import LanguagePicker from "./components/LanguagePicker";
 import OSPicker from "./components/OSPicker";
+import Header from "./Header";
 
 const useStyles = makeStyles(({ spacing }: Theme) => ({
   root: {
     display: "flex",
+    flexDirection: "column",
     height: "100%",
+  },
+  content: {
+    display: "flex",
+    flex: 1,
   },
   toolbar: {
     display: "flex",
@@ -72,55 +78,58 @@ function App() {
 
   return (
     <div className={classes.root} ref={appRef}>
-      <div className={classes.toolbar}>
-        <ColorPicker
-          id="background-color"
-          tooltip="Background Color"
-          color={backgroundColor}
-          onChange={setBackgroundColor}
-          icon={<FormatColorFill />}
-        />
-        <ColorPicker
-          id="font-color"
-          tooltip="Text Color"
-          color={fontColor}
-          onChange={setFontColor}
-          icon={<FormatColorText />}
-        />
-        <LanguagePicker
-          id="code-language"
-          tooltip="Code language"
-          language={language}
-          languageSet={languageSet}
-          onChange={setLanguage}
-          icon={<CodeBraces />}
-        />
-        <ToolbarToggle
-          active={showLineNumbers}
-          tooltip="Line Numbers"
-          onChange={setShowLineNumbers}
-          activeIcon={<FormatListNumbers />}
-          inactiveIcon={<Text />}
-        />
-        <ToolbarToggle
-          active={lightMode}
-          tooltip={lightMode ? "Dark Mode" : "Light Mode"}
-          onChange={setLightMode}
-          activeIcon={<LightbulbOutline />}
-          inactiveIcon={<Lightbulb />}
-        />
-        <OSPicker id={"operating-system"} onChange={setOS} />
-      </div>
-      <div className={classes.captureStageContainer}>
-        <CaptureStage
-          ref={stageRef}
-          backgroundColor={backgroundColor}
-          fontColor={fontColor}
-          language={language}
-          lightMode={lightMode}
-          os={os}
-          showLineNumbers={showLineNumbers}
-        />
+      <Header />
+      <div className={classes.content}>
+        <div className={classes.toolbar}>
+          <ColorPicker
+            id="background-color"
+            tooltip="Background Color"
+            color={backgroundColor}
+            onChange={setBackgroundColor}
+            icon={<FormatColorFill />}
+          />
+          <ColorPicker
+            id="font-color"
+            tooltip="Text Color"
+            color={fontColor}
+            onChange={setFontColor}
+            icon={<FormatColorText />}
+          />
+          <LanguagePicker
+            id="code-language"
+            tooltip="Code language"
+            language={language}
+            languageSet={languageSet}
+            onChange={setLanguage}
+            icon={<CodeBraces />}
+          />
+          <ToolbarToggle
+            active={showLineNumbers}
+            tooltip="Line Numbers"
+            onChange={setShowLineNumbers}
+            activeIcon={<FormatListNumbers />}
+            inactiveIcon={<Text />}
+          />
+          <ToolbarToggle
+            active={lightMode}
+            tooltip={lightMode ? "Dark Mode" : "Light Mode"}
+            onChange={setLightMode}
+            activeIcon={<LightbulbOutline />}
+            inactiveIcon={<Lightbulb />}
+          />
+          <OSPicker id={"operating-system"} onChange={setOS} />
+        </div>
+        <div className={classes.captureStageContainer}>
+          <CaptureStage
+            ref={stageRef}
+            backgroundColor={backgroundColor}
+            fontColor={fontColor}
+            language={language}
+            lightMode={lightMode}
+            os={os}
+            showLineNumbers={showLineNumbers}
+          />
+        </div>
       </div>
       <Fab
         className={classes.fab}
