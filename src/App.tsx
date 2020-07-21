@@ -19,6 +19,7 @@ import ColorPicker from "./components/ColorPicker";
 import ToolbarToggle from "./components/ToolbarToggle";
 import { FormatListNumbers } from "mdi-material-ui/light";
 import LanguagePicker from "./components/LanguagePicker";
+import OSPicker from "./components/OSPicker";
 
 const useStyles = makeStyles(({ spacing }: Theme) => ({
   root: {
@@ -56,6 +57,9 @@ function App() {
   const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [lightMode, setLightMode] = useState(true);
   const [language, setLanguage] = useState("javascript");
+  const [os, setOS] = useState<"macOS" | "windows10" | "linuxMint">(
+    "windows10"
+  );
 
   const languageSet = ["javascript", "java", "python"]; // TODO: Replace with all supported languages
 
@@ -104,6 +108,7 @@ function App() {
           activeIcon={<LightbulbOutline />}
           inactiveIcon={<Lightbulb />}
         />
+        <OSPicker id={"operating-system"} onChange={setOS} />
       </div>
       <div className={classes.captureStageContainer}>
         <CaptureStage
@@ -112,6 +117,7 @@ function App() {
           fontColor={fontColor}
           language={language}
           lightMode={lightMode}
+          os={os}
           showLineNumbers={showLineNumbers}
         />
       </div>

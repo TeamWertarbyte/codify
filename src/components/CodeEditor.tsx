@@ -22,15 +22,16 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
 interface Props {
   language: string;
   lightMode: boolean;
+  os: "macOS" | "windows10" | "linuxMint";
   showLineNumbers: boolean;
 }
 
-const CodeEditor = ({ language, lightMode, showLineNumbers }: Props) => {
+const CodeEditor = ({ language, lightMode, os, showLineNumbers }: Props) => {
   const classes = useStyles();
 
   return (
     <Paper className={classes.root} elevation={15}>
-      <WindowHeader />
+      <WindowHeader variant={os} />
       <div className={classes.content}>
         <Editor
           height={"300px"}

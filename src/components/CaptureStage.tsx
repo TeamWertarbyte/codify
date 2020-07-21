@@ -15,6 +15,7 @@ interface Props {
   fontColor: string;
   language: string;
   lightMode: boolean;
+  os: "macOS" | "windows10" | "linuxMint";
   showLineNumbers: boolean;
 }
 
@@ -26,6 +27,7 @@ const CaptureStage = React.forwardRef(
       fontColor,
       language,
       lightMode,
+      os,
       showLineNumbers,
     }: Props,
     ref
@@ -55,6 +57,7 @@ const CaptureStage = React.forwardRef(
         <CodeEditor
           language={language}
           lightMode={lightMode}
+          os={os}
           showLineNumbers={showLineNumbers}
         />
       </Paper>
