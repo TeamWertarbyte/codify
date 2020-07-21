@@ -1,0 +1,11 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  backface-visibility: hidden;
+}
+
+#root {
+  height: 100%;
+  min-height: 100%;
+}
