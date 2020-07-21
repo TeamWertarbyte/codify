@@ -65,12 +65,10 @@ function App() {
   const [fontColor, setFontColor] = useState("#000000");
   const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [lightMode, setLightMode] = useState(true);
-  const [language, setLanguage] = useState("javascript");
   const [os, setOS] = useState<"macOS" | "windows10" | "linuxMint">(
     "windows10"
   );
-
-  const languageSet = ["javascript", "java", "python"]; // TODO: Replace with all supported languages
+  const [language, setLanguage] = useState<string>("javascript");
 
   const handleGenerateImage = () => {
     domtoimage.toBlob(stageRef.current).then((blob: Blob) => {
@@ -101,7 +99,6 @@ function App() {
             id="code-language"
             tooltip="Code language"
             language={language}
-            languageSet={languageSet}
             onChange={setLanguage}
             icon={<CodeBraces />}
           />
