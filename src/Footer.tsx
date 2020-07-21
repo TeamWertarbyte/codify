@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import cx from "classnames";
 import { grey } from "@material-ui/core/colors";
+import { version } from "../package.json";
 
 const styles = ({ spacing }: Theme) =>
   createStyles({
@@ -17,12 +18,14 @@ const styles = ({ spacing }: Theme) =>
       backgroundColor: grey[50],
       display: "flex",
       alignItems: "center",
-      justifyContent: "flex-end",
       borderTop: `1px solid ${grey[400]}`,
     },
     divider: {
       margin: spacing(0, 1),
       backgroundColor: grey[400],
+    },
+    version: {
+      flex: 1,
     },
   });
 
@@ -33,6 +36,9 @@ interface Props {
 const Footer = ({ classes, className }: Props & WithStyles<typeof styles>) => {
   return (
     <div className={cx(classes.root, className)}>
+      <Typography variant={"caption"} className={classes.version}>
+        Version {version}
+      </Typography>
       <Typography variant={"caption"}>
         <a
           href={"https://wertarbyte.com/impressum"}
