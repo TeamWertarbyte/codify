@@ -19,6 +19,7 @@ const styles = ({ spacing }: Theme) =>
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
+      borderBottom: `1px solid ${grey[400]}`,
     },
   });
 

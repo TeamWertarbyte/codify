@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode } from "react";
+import React, { ChangeEvent, ReactNode, useEffect, useState } from "react";
 import {
   createStyles,
   FormControl,
@@ -10,6 +10,7 @@ import {
   WithStyles,
 } from "@material-ui/core";
 import Picker from "./Picker";
+import { monaco } from "@monaco-editor/react";
 
 const styles = ({ spacing }: Theme) =>
   createStyles({
@@ -23,8 +24,7 @@ interface Props {
   id: string;
   icon: React.ReactNode;
   language: string;
-  languageSet: string[];
-  onChange: (language: string) => void;
+  onChange: (id: string) => void;
   tooltip: string;
 }
 
@@ -33,10 +33,32 @@ const LanguagePicker = ({
   id,
   icon,
   language,
-  languageSet,
   onChange,
   tooltip,
 }: Props & WithStyles<typeof styles>) => {
+  const [languages, setLanguages] = useState<{ id: string; alias: string }[]>(
+    []
+  );
+
+  useEffect(() => {
+    monaco
+      .init()
+      .then((monaco) => {
+        setLanguages(
+          monaco.languages.getLanguages().map(({ id, aliases }) => ({
+            id,
+            alias: aliases?.length ? aliases[0] : id,
+          }))
+        );
+      })
+      .catch((error) =>
+        console.error(
+          "An error occurred during initialization of Monaco: ",
+          error
+        )
+      );
+  }, []);
+
   const handleChange = (event: ChangeEvent<ReactNode>) => {
     const target = event.target as HTMLSelectElement;
     onChange(target.value);
@@ -56,9 +78,9 @@ const LanguagePicker = ({
           onChange={(event) => handleChange(event)}
           value={language}
         >
-          {languageSet.map((language, index) => (
-            <MenuItem key={index} value={language}>
-              {language}
+          {languages.map(({ id, alias }, index) => (
+            <MenuItem key={id} value={id}>
+              {alias}
             </MenuItem>
           ))}
         </Select>

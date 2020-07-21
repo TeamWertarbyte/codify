@@ -1,4 +1,4 @@
-import React, { createRef, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./App.css";
 import { Fab, makeStyles, Theme } from "@material-ui/core";
 import { saveAs } from "file-saver";
@@ -21,6 +21,7 @@ import { FormatListNumbers } from "mdi-material-ui/light";
 import LanguagePicker from "./components/LanguagePicker";
 import OSPicker from "./components/OSPicker";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const useStyles = makeStyles(({ spacing }: Theme) => ({
   root: {
@@ -44,12 +45,11 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
     placeItems: "center",
     justifyItems: "center",
     backgroundColor: grey[200],
-    borderTop: `1px solid ${grey[400]}`,
     borderLeft: `1px solid ${grey[400]}`,
   },
   fab: {
     position: "absolute",
-    bottom: spacing(2),
+    bottom: spacing(6),
     right: spacing(2),
   },
   options: {
@@ -59,18 +59,15 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
 
 function App() {
   const classes = useStyles();
-  const appRef = createRef<HTMLDivElement>();
   const stageRef = useRef();
   const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
   const [fontColor, setFontColor] = useState("#000000");
   const [showLineNumbers, setShowLineNumbers] = useState(true);
-  const [lightMode, setLightMode] = useState(false);
-  const [language, setLanguage] = useState("javascript");
+  const [lightMode, setLightMode] = useState(true);
   const [os, setOS] = useState<"macOS" | "windows10" | "linuxMint">(
     "linuxMint"
   );
-
-  const languageSet = ["javascript", "java", "python"]; // TODO: Replace with all supported languages
+  const [language, setLanguage] = useState<string>("javascript");
 
   const handleGenerateImage = () => {
     domtoimage.toBlob(stageRef.current).then((blob: Blob) => {
@@ -79,7 +76,7 @@ function App() {
   };
 
   return (
-    <div className={classes.root} ref={appRef}>
+    <div className={classes.root}>
       <Header />
       <div className={classes.content}>
         <div className={classes.toolbar}>
@@ -101,7 +98,6 @@ function App() {
             id="code-language"
             tooltip="Code language"
             language={language}
-            languageSet={languageSet}
             onChange={setLanguage}
             icon={<CodeBraces />}
           />
@@ -133,6 +129,7 @@ function App() {
           />
         </div>
       </div>
+      <Footer />
       <Fab
         className={classes.fab}
         onClick={handleGenerateImage}

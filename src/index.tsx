@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import {
-  createMuiTheme,
+  unstable_createMuiStrictModeTheme,
   CssBaseline,
   MuiThemeProvider,
   PaletteType,
@@ -12,7 +12,7 @@ import {
 import { SnackbarProvider } from "material-ui-snackbar-provider";
 
 const muiTheme = (themeType: PaletteType = "light") =>
-  createMuiTheme({
+  unstable_createMuiStrictModeTheme({
     palette: {
       primary: {
         main: "#005091",
