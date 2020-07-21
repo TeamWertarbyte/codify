@@ -120,8 +120,8 @@ function App() {
         <div className={classes.captureStageContainer}>
           <CaptureStage
             ref={stageRef}
-            backgroundColor={backgroundColor}
-            fontColor={fontColor}
+            backgroundColor={lightMode ? backgroundColor : "#353535"}
+            fontColor={lightMode ? fontColor : "#d1d2d3"}
             language={language}
             lightMode={lightMode}
             os={os}
