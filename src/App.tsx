@@ -64,7 +64,9 @@ function App() {
   const [fontColor, setFontColor] = useState("#000000");
   const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [lightMode, setLightMode] = useState(true);
-  const [os, setOS] = useState<"macOS" | "windows10" | "linuxMint">("macOS");
+  const [os, setOS] = useState<"macOS" | "windows10" | "linuxMint">(
+    "windows10"
+  );
   const [language, setLanguage] = useState<string>("javascript");
 
   const handleGenerateImage = () => {

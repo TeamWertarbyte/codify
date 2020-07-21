@@ -59,6 +59,7 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
     },
     square: {
       borderRadius: 0,
+      padding: spacing(1, 2, 1, 2),
     },
     spaceMint: {
       display: "flex",
@@ -68,7 +69,13 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
     spaceWindows: {
       display: "flex",
       justifyContent: "space-between",
-      width: spacing(14),
+      width: spacing(20),
+    },
+    windowsClose: {
+      "&:hover": {
+        backgroundColor: red[500],
+        color: "white",
+      },
     },
   })
 );
@@ -107,7 +114,10 @@ const WindowHeader = ({ className, variant }: Props) => {
               <IconButton size={"small"} className={classes.square}>
                 <SquareOutline style={{ fontSize: 16 }} />
               </IconButton>
-              <IconButton size={"small"} className={classes.square}>
+              <IconButton
+                size={"small"}
+                className={cx(classes.square, classes.windowsClose)}
+              >
                 <WindowClose style={{ fontSize: 18 }} />
               </IconButton>
             </div>
