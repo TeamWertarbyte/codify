@@ -45,7 +45,6 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
     placeItems: "center",
     justifyItems: "center",
     backgroundColor: grey[200],
-    borderTop: `1px solid ${grey[400]}`,
     borderLeft: `1px solid ${grey[400]}`,
   },
   fab: {
