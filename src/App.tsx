@@ -64,10 +64,10 @@ function App() {
   const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
   const [fontColor, setFontColor] = useState("#000000");
   const [showLineNumbers, setShowLineNumbers] = useState(true);
-  const [lightMode, setLightMode] = useState(true);
+  const [lightMode, setLightMode] = useState(false);
   const [language, setLanguage] = useState("javascript");
   const [os, setOS] = useState<"macOS" | "windows10" | "linuxMint">(
-    "windows10"
+    "linuxMint"
   );
 
   const languageSet = ["javascript", "java", "python"]; // TODO: Replace with all supported languages
