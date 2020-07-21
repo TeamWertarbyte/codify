@@ -40,16 +40,6 @@ const Footer = ({ classes, className }: Props & WithStyles<typeof styles>) => {
         Version {version}
       </Typography>
       <Typography variant={"caption"}>
-        <a
-          href={"https://wertarbyte.com/impressum"}
-          target={"_blank"}
-          rel="noopener noreferrer"
-        >
-          Imprint
-        </a>
-      </Typography>
-      <Divider className={classes.divider} orientation={"vertical"} />
-      <Typography variant={"caption"}>
         Copyright © 2020{" "}
         <a
           href={"https://wertarbyte.com/"}
@@ -57,6 +47,16 @@ const Footer = ({ classes, className }: Props & WithStyles<typeof styles>) => {
           rel="noopener noreferrer"
         >
           Wertarbyte GmbH
+        </a>
+      </Typography>
+      <Divider className={classes.divider} orientation={"vertical"} />
+      <Typography variant={"caption"}>
+        <a
+          href={"https://wertarbyte.com/impressum"}
+          target={"_blank"}
+          rel="noopener noreferrer"
+        >
+          Imprint
         </a>
       </Typography>
     </div>
