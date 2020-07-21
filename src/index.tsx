@@ -15,7 +15,7 @@ const muiTheme = (themeType: PaletteType = "light") =>
   unstable_createMuiStrictModeTheme({
     palette: {
       primary: {
-        main: "#005091",
+        main: "#24796B",
       },
       secondary: {
         main: "#348a31",
