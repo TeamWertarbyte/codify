@@ -59,20 +59,30 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
   },
 }));
 
+const fontFamilies = ["Segoe UI", "Roboto", "Arial"];
+
+interface Options {
+  backgroundColor: string;
+  fontColor: string;
+  showLineNumbers: boolean;
+  lightMode: boolean;
+  os: "macOS" | "windows10" | "linuxMint";
+  language: string;
+  fontFamily: string;
+}
+
 function App() {
   const classes = useStyles();
   const stageRef = useRef<HTMLElement>();
-  const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
-  const [fontColor, setFontColor] = useState("#000000");
-  const [showLineNumbers, setShowLineNumbers] = useState(true);
-  const [lightMode, setLightMode] = useState(true);
-  const [os, setOS] = useState<"macOS" | "windows10" | "linuxMint">(
-    "windows10"
-  );
-  const [language, setLanguage] = useState<string>("javascript");
-
-  const fontFamilies = ["Segoe UI", "Roboto", "Arial"];
-  const [fontFamily, setFontFamily] = useState<string>(fontFamilies[1]);
+  const [options, setOptions] = useState<Options>({
+    backgroundColor: "#FFFFFF",
+    fontColor: "#000000",
+    showLineNumbers: true,
+    lightMode: true,
+    os: "windows10",
+    language: "javascript",
+    fontFamily: "Roboto",
+  });
 
   const handleGenerateImage = () => {
     const scale = 2;
@@ -106,64 +116,80 @@ function App() {
           <ColorPicker
             id="background-color"
             tooltip="Background Color"
-            color={backgroundColor}
-            onChange={setBackgroundColor}
+            color={options.backgroundColor}
+            onChange={(backgroundColor) =>
+              setOptions((options) => ({ ...options, backgroundColor }))
+            }
             icon={<FormatColorFill />}
           />
           <ColorPicker
             id="font-color"
             tooltip="Text Color"
-            color={fontColor}
-            onChange={setFontColor}
+            color={options.fontColor}
+            onChange={(fontColor) =>
+              setOptions((options) => ({ ...options, fontColor }))
+            }
             icon={<FormatColorText />}
           />
           <LanguagePicker
             id="code-language"
             tooltip="Code language"
-            language={language}
-            onChange={setLanguage}
+            language={options.language}
+            onChange={(language) =>
+              setOptions((options) => ({ ...options, language }))
+            }
             icon={<CodeBraces />}
           />
           <ToolbarToggle
-            active={showLineNumbers}
+            active={options.showLineNumbers}
             tooltip="Line Numbers"
-            onChange={setShowLineNumbers}
+            onChange={(showLineNumbers) =>
+              setOptions((options) => ({ ...options, showLineNumbers }))
+            }
             activeIcon={<FormatListNumbers />}
             inactiveIcon={<Text />}
           />
           <ToolbarToggle
-            active={lightMode}
-            tooltip={lightMode ? "Dark Mode" : "Light Mode"}
+            active={options.lightMode}
+            tooltip={options.lightMode ? "Dark Mode" : "Light Mode"}
             onChange={(lightMode) => {
-              setLightMode(lightMode);
-              if (lightMode === false) {
-                setBackgroundColor("#383839");
-                setFontColor("#d3d3d3");
+              setOptions((options) => ({ ...options, lightMode }));
+              if (!lightMode) {
+                setOptions((options) => ({
+                  ...options,
+                  backgroundColor: "#383839",
+                  fontColor: "#d3d3d3",
+                }));
               }
             }}
             activeIcon={<LightbulbOutline />}
             inactiveIcon={<Lightbulb />}
           />
-          <OSPicker id={"operating-system"} onChange={setOS} />
+          <OSPicker
+            id={"operating-system"}
+            onChange={(os) => setOptions((options) => ({ ...options, os }))}
+          />
           <FontPicker
             id="font-family"
             tooltip="Font family"
-            fontFamily={fontFamily}
+            fontFamily={options.fontFamily}
             fontFamilies={fontFamilies}
-            onChange={setFontFamily}
+            onChange={(fontFamily) =>
+              setOptions((options) => ({ ...options, fontFamily }))
+            }
             icon={<Alphabetical />}
           />
         </div>
         <div className={classes.captureStageContainer}>
           <CaptureStage
             ref={stageRef}
-            backgroundColor={backgroundColor}
-            fontColor={fontColor}
-            fontFamily={fontFamily}
-            language={language}
-            lightMode={lightMode}
-            os={os}
-            showLineNumbers={showLineNumbers}
+            backgroundColor={options.backgroundColor}
+            fontColor={options.fontColor}
+            fontFamily={options.fontFamily}
+            language={options.language}
+            lightMode={options.lightMode}
+            os={options.os}
+            showLineNumbers={options.showLineNumbers}
           />
         </div>
       </div>
