@@ -4,6 +4,7 @@ import { grey } from "@material-ui/core/colors";
 import Editor from "@monaco-editor/react";
 import WindowHeader from "./WindowHeader";
 import cx from "classnames";
+import { Options } from "../interfaces";
 
 const useStyles = makeStyles(({ spacing }: Theme) => ({
   root: {
@@ -24,13 +25,12 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
 }));
 
 interface Props {
-  language: string;
-  lightMode: boolean;
-  os: "macOS" | "windows10" | "linuxMint";
-  showLineNumbers: boolean;
+  options: Options;
 }
 
-const CodeEditor = ({ language, lightMode, os, showLineNumbers }: Props) => {
+const CodeEditor = ({
+  options: { lightMode, os, language, showLineNumbers },
+}: Props) => {
   const classes = useStyles();
 
   return (

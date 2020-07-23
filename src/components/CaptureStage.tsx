@@ -38,12 +38,7 @@ const CaptureStage = React.forwardRef(({ className, options }: Props, ref) => {
       >
         Edit this cool title
       </Typography>
-      <CodeEditor
-        language={options.language}
-        lightMode={options.lightMode}
-        os={options.os}
-        showLineNumbers={options.showLineNumbers}
-      />
+      <CodeEditor options={options} />
     </Paper>
   );
 });
