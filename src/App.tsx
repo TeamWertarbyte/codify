@@ -24,6 +24,7 @@ import OSPicker from "./components/OSPicker";
 import FontPicker from "./components/FontPicker";
 import Header from "./Header";
 import Footer from "./Footer";
+import { Options } from "./interfaces";
 
 const useStyles = makeStyles(({ spacing }: Theme) => ({
   root: {
@@ -60,16 +61,6 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
 }));
 
 const fontFamilies = ["Segoe UI", "Roboto", "Arial"];
-
-interface Options {
-  backgroundColor: string;
-  fontColor: string;
-  showLineNumbers: boolean;
-  lightMode: boolean;
-  os: "macOS" | "windows10" | "linuxMint";
-  language: string;
-  fontFamily: string;
-}
 
 function App() {
   const classes = useStyles();
