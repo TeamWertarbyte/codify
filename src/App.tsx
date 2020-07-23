@@ -61,7 +61,7 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
 
 function App() {
   const classes = useStyles();
-  const stageRef = useRef();
+  const stageRef = useRef<HTMLElement>();
   const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
   const [fontColor, setFontColor] = useState("#000000");
   const [showLineNumbers, setShowLineNumbers] = useState(true);
@@ -75,14 +75,25 @@ function App() {
   const [fontFamily, setFontFamily] = useState<string>(fontFamilies[1]);
 
   const handleGenerateImage = () => {
+    const scale = 2;
     const elm = stageRef.current;
     if (elm) {
-      domtoimage.toJpeg(elm).then((dataUrl: string) => {
-        const link = document.createElement("a");
-        link.download = `codify-${Date.now()}.jpeg`;
-        link.href = dataUrl;
-        link.click();
-      });
+      domtoimage
+        .toJpeg(elm, {
+          height: elm.offsetHeight * scale,
+          style: {
+            transform: `scale(${scale}) translate(${
+              elm.offsetWidth / 2 / scale
+            }px, ${elm.offsetHeight / 2 / scale}px)`,
+          },
+          width: elm.offsetWidth * scale,
+        })
+        .then((dataUrl: string) => {
+          const link = document.createElement("a");
+          link.download = `codify-${Date.now()}.jpeg`;
+          link.href = dataUrl;
+          link.click();
+        });
     }
   };
 
