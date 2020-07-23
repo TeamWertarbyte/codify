@@ -172,16 +172,7 @@ function App() {
           />
         </div>
         <div className={classes.captureStageContainer}>
-          <CaptureStage
-            ref={stageRef}
-            backgroundColor={options.backgroundColor}
-            fontColor={options.fontColor}
-            fontFamily={options.fontFamily}
-            language={options.language}
-            lightMode={options.lightMode}
-            os={options.os}
-            showLineNumbers={options.showLineNumbers}
-          />
+          <CaptureStage ref={stageRef} options={options} />
         </div>
       </div>
       <Footer />
