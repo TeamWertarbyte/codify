@@ -87,6 +87,7 @@ function App() {
             }px, ${elm.offsetHeight / 2 / scale}px)`,
           },
           width: elm.offsetWidth * scale,
+          quality: 0.95,
         })
         .then((dataUrl: string) => {
           const link = document.createElement("a");
