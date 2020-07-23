@@ -75,9 +75,15 @@ function App() {
   const [fontFamily, setFontFamily] = useState<string>(fontFamilies[1]);
 
   const handleGenerateImage = () => {
-    domtoimage.toBlob(stageRef.current).then((blob: Blob) => {
-      saveAs(blob, `codify-${Date.now()}.png`);
-    });
+    const elm = stageRef.current;
+    if (elm) {
+      domtoimage.toJpeg(elm).then((dataUrl: string) => {
+        const link = document.createElement("a");
+        link.download = `codify-${Date.now()}.jpeg`;
+        link.href = dataUrl;
+        link.click();
+      });
+    }
   };
 
   return (
