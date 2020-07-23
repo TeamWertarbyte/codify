@@ -17,7 +17,6 @@
     "@types/react-dom": "^16.9.0",
     "classnames": "^2.2.6",
     "dom-to-image-more": "^2.8.0",
-    "file-saver": "^2.0.2",
     "material-ui-snackbar-provider": "^1.4.0",
     "mdi-material-ui": "^6.16.0",
     "monaco-editor": "^0.20.0",
