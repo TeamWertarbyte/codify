@@ -22,7 +22,7 @@ const CaptureStage = React.forwardRef(({ className, options }: Props, ref) => {
     <Paper
       ref={ref}
       className={cx(classes.root, className)}
-      elevation={10}
+      elevation={0}
       square
       style={{
         backgroundColor: options.backgroundColor,
