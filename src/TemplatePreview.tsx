@@ -29,7 +29,7 @@ const useStyles = makeStyles(({ spacing }) => ({
     display: "flex",
     flexDirection: "column",
     overflow: "hidden",
-    width: 400,
+    width: 300,
     height: 120,
     backgroundColor: grey[700],
     marginBottom: spacing(2),
