@@ -10,6 +10,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { Options } from "./interfaces";
 import Toolbar from "./Toolbar";
+import Templates from "./Templates";
 
 const useStyles = makeStyles(({ spacing }: Theme) => ({
   root: {
@@ -76,6 +77,7 @@ function App() {
   return (
     <div className={classes.root}>
       <Header />
+      <Templates onChange={setOptions} />
       <div className={classes.content}>
         <Toolbar options={options} onChange={setOptions} />
         <div className={classes.captureStageContainer}>
