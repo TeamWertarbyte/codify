@@ -15,6 +15,7 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
   createStyles({
     root: {
       display: "flex",
+      transition: "all 0.3s",
     },
     macOS: {
       backgroundColor: grey[300],

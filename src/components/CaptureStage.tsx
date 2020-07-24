@@ -7,6 +7,7 @@ import { Options } from "../interfaces";
 const useStyles = makeStyles(({ spacing }) => ({
   root: {
     padding: spacing(8),
+    transition: "all 0.3s",
   },
 }));
 
