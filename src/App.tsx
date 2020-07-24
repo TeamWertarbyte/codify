@@ -21,6 +21,8 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
   content: {
     display: "flex",
     flex: 1,
+    overflow: "hidden",
+    maxHeight: "100%",
   },
   captureStageContainer: {
     flex: 1,
@@ -77,8 +79,8 @@ function App() {
   return (
     <div className={classes.root}>
       <Header />
-      <Templates onChange={setOptions} />
       <div className={classes.content}>
+        <Templates onChange={setOptions} />
         <Toolbar options={options} onChange={setOptions} />
         <div className={classes.captureStageContainer}>
           <CaptureStage ref={stageRef} options={options} />

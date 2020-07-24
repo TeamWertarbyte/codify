@@ -8,7 +8,7 @@ import { grey } from "@material-ui/core/colors";
 
 const useStyles = makeStyles(({ spacing }) => ({
   root: {
-    padding: spacing(2),
+    padding: spacing(2, 4, 2, 2),
   },
   overlay: {
     position: "relative",

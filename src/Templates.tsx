@@ -9,6 +9,7 @@ const styles = () =>
   createStyles({
     root: {
       display: "flex",
+      flexDirection: "column",
       borderBottom: `1px solid ${grey[400]}`,
       flexWrap: "nowrap",
       overflow: "auto",
