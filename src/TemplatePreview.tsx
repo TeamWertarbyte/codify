@@ -8,7 +8,7 @@ import { grey } from "@material-ui/core/colors";
 
 const useStyles = makeStyles(({ spacing }) => ({
   root: {
-    padding: spacing(1),
+    padding: spacing(2),
   },
   overlay: {
     position: "relative",
@@ -72,7 +72,7 @@ const TemplatePreview = ({ className, options }: Props) => {
       </Typography>
       <Paper
         className={cx(classes.editor, { [classes.dark]: !lightMode })}
-        elevation={15}
+        elevation={1}
       >
         <WindowHeader variant={os} />
         <div className={classes.content}>
