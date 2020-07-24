@@ -30,7 +30,7 @@ const templates: Options[] = [
     backgroundColor: "#00CC6A",
     fontColor: "#000000",
     showLineNumbers: false,
-    lightMode: false,
+    lightMode: true,
     os: "windows10",
     language: "javascript",
     fontFamily: "Roboto",
@@ -39,7 +39,7 @@ const templates: Options[] = [
     backgroundColor: "#78C5EF",
     fontColor: "#000000",
     showLineNumbers: false,
-    lightMode: false,
+    lightMode: true,
     os: "macOS",
     language: "javascript",
     fontFamily: "Roboto",
@@ -48,7 +48,7 @@ const templates: Options[] = [
     backgroundColor: "#00CC6A",
     fontColor: "#000000",
     showLineNumbers: false,
-    lightMode: false,
+    lightMode: true,
     os: "macOS",
     language: "javascript",
     fontFamily: "Roboto",
@@ -57,7 +57,7 @@ const templates: Options[] = [
     backgroundColor: "#969696",
     fontColor: "#000000",
     showLineNumbers: false,
-    lightMode: false,
+    lightMode: true,
     os: "linuxMint",
     language: "javascript",
     fontFamily: "Roboto",
@@ -72,11 +72,15 @@ interface Props {
 const Templates = ({
   classes,
   className,
+  onChange,
 }: Props & WithStyles<typeof styles>) => {
   return (
     <div className={cx(classes.root, className)}>
       {templates.map((template) => (
-        <TemplatePreview options={template} />
+        <TemplatePreview
+          onClick={() => onChange(template)}
+          options={template}
+        />
       ))}
     </div>
   );

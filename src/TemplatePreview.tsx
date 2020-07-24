@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Paper, makeStyles, Typography } from "@material-ui/core";
 import cx from "classnames";
 import { Options } from "./interfaces";
@@ -11,15 +11,19 @@ const useStyles = makeStyles(({ spacing }) => ({
     padding: spacing(2, 4, 2, 2),
   },
   overlay: {
+    cursor: "pointer",
     position: "relative",
     top: -191,
-    left: 0,
+    left: 0 - spacing(2),
     right: 0,
     bottom: 0,
-    height: "100%",
-    width: "100%",
+    height: `calc(100% + ${spacing(4)}px)`,
+    width: `calc(100% + ${spacing(6)}px)`,
     backgroundColor: "rgba(0,0,0,0.0)",
     zIndex: 2,
+  },
+  hovered: {
+    backgroundColor: "rgba(0,0,0,0.2)",
   },
   editor: {
     display: "flex",
@@ -41,10 +45,12 @@ const useStyles = makeStyles(({ spacing }) => ({
 interface Props {
   className?: string;
   options: Options;
+  onClick: () => void;
 }
 
-const TemplatePreview = ({ className, options }: Props) => {
+const TemplatePreview = ({ className, onClick, options }: Props) => {
   const classes = useStyles();
+  const [hovered, setHovered] = useState(false);
   const {
     fontColor,
     fontFamily,
@@ -93,7 +99,12 @@ const TemplatePreview = ({ className, options }: Props) => {
           />
         </div>
       </Paper>
-      <div className={classes.overlay} />
+      <div
+        className={cx(classes.overlay, { [classes.hovered]: hovered })}
+        onMouseOver={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onClick={onClick}
+      />
     </Paper>
   );
 };
