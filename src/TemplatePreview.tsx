@@ -1,22 +1,22 @@
 import React, { useState } from "react";
-import { Paper, makeStyles, Typography } from "@material-ui/core";
+import { Paper, makeStyles } from "@material-ui/core";
 import cx from "classnames";
 import { Options } from "./interfaces";
 import WindowHeader from "./components/WindowHeader";
 
 const useStyles = makeStyles(({ spacing }) => ({
   root: {
-    padding: spacing(2, 4, 2, 2),
+    padding: spacing(2),
   },
   overlay: {
     cursor: "pointer",
     position: "relative",
-    top: -151,
+    top: -120,
     left: 0 - spacing(2),
     right: 0,
     bottom: 0,
     height: `calc(100% + ${spacing(4)}px)`,
-    width: `calc(100% + ${spacing(6)}px)`,
+    width: `calc(100% + ${spacing(4)}px)`,
     backgroundColor: "rgba(0,0,0,0.0)",
     zIndex: 2,
   },
@@ -27,12 +27,18 @@ const useStyles = makeStyles(({ spacing }) => ({
     display: "flex",
     flexDirection: "column",
     overflow: "hidden",
-    width: 300,
+    width: 200,
     height: 80,
-    marginBottom: spacing(2),
   },
   dark: {
     backgroundColor: "#54799D",
+  },
+  title: {
+    width: "70%",
+    height: spacing(2),
+    marginBottom: spacing(1),
+    borderRadius: spacing(2),
+    opacity: 0.35,
   },
 }));
 
@@ -45,7 +51,7 @@ interface Props {
 const TemplatePreview = ({ className, onClick, options }: Props) => {
   const classes = useStyles();
   const [hovered, setHovered] = useState(false);
-  const { fontColor, fontFamily, lightMode, os } = options;
+  const { fontColor, lightMode, os } = options;
 
   return (
     <Paper
@@ -56,13 +62,7 @@ const TemplatePreview = ({ className, onClick, options }: Props) => {
         backgroundColor: options.backgroundColor,
       }}
     >
-      <Typography
-        variant={"h6"}
-        gutterBottom
-        style={{ color: fontColor, fontFamily }}
-      >
-        Edit this cool title
-      </Typography>
+      <div className={classes.title} style={{ backgroundColor: fontColor }} />
       <Paper
         className={cx(classes.editor, { [classes.dark]: !lightMode })}
         elevation={1}
