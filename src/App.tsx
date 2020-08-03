@@ -10,7 +10,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { Options } from "./interfaces";
 import Toolbar from "./Toolbar";
-import Templates from "./Templates";
 
 const useStyles = makeStyles(({ spacing }: Theme) => ({
   root: {
@@ -80,13 +79,11 @@ function App() {
     <div className={classes.root}>
       <Header />
       <div className={classes.content}>
-        <Templates onChange={setOptions} />
         <Toolbar options={options} onChange={setOptions} />
         <div className={classes.captureStageContainer}>
           <CaptureStage ref={stageRef} options={options} />
         </div>
       </div>
-      <Footer />
       <Fab
         className={classes.fab}
         onClick={handleGenerateImage}
@@ -94,6 +91,7 @@ function App() {
       >
         <Download />
       </Fab>
+      <Footer />
     </div>
   );
 }

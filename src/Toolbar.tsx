@@ -6,6 +6,7 @@ import ColorPicker from "./components/ColorPicker";
 import {
   Alphabetical,
   CodeBraces,
+  FileDocumentOutline,
   FormatColorFill,
   FormatColorText,
   Lightbulb,
@@ -18,6 +19,7 @@ import { FormatListNumbers } from "mdi-material-ui/light";
 import OSPicker from "./components/OSPicker";
 import FontPicker from "./components/FontPicker";
 import { Options } from "./interfaces";
+import TemplatePicker from "./components/TemplatePicker";
 
 const styles = ({ spacing }: Theme) =>
   createStyles({
@@ -45,6 +47,12 @@ const Toolbar = ({
 }: Props & WithStyles<typeof styles>) => {
   return (
     <div className={cx(classes.root, className)}>
+      <TemplatePicker
+        id="template"
+        tooltip="Template"
+        onChange={onChange}
+        icon={<FileDocumentOutline />}
+      />
       <ColorPicker
         id="background-color"
         tooltip="Background Color"

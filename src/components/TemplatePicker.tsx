@@ -1,16 +1,16 @@
 import React from "react";
-import { createStyles, WithStyles, withStyles } from "@material-ui/core";
-import cx from "classnames";
-import { Options } from "./interfaces";
+import { createStyles, Paper, WithStyles, withStyles } from "@material-ui/core";
+import Picker from "./Picker";
+import { Options } from "../interfaces";
 import TemplatePreview from "./TemplatePreview";
-import { grey } from "@material-ui/core/colors";
 
 const styles = () =>
   createStyles({
-    root: {
+    root: {},
+    button: {},
+    list: {
       display: "flex",
       flexDirection: "column",
-      borderBottom: `1px solid ${grey[400]}`,
       flexWrap: "nowrap",
       overflow: "auto",
     },
@@ -47,25 +47,31 @@ const templates: Options[] = [
 ];
 
 interface Props {
-  className?: string;
-  onChange: (options: Options) => void;
+  onChange: (option: Options) => void;
+  id: string;
+  tooltip: string;
+  icon: React.ReactNode;
 }
 
-const Templates = ({
+const TemplatePicker = ({
   classes,
-  className,
   onChange,
+  id,
+  icon,
+  tooltip,
 }: Props & WithStyles<typeof styles>) => {
   return (
-    <div className={cx(classes.root, className)}>
-      {templates.map((template) => (
-        <TemplatePreview
-          onClick={() => onChange(template)}
-          options={template}
-        />
-      ))}
-    </div>
+    <Picker id={id} classes={classes} icon={icon} tooltip={tooltip}>
+      <Paper className={classes.list}>
+        {templates.map((template) => (
+          <TemplatePreview
+            onClick={() => onChange(template)}
+            options={template}
+          />
+        ))}
+      </Paper>
+    </Picker>
   );
 };
 
-export default withStyles(styles)(Templates);
+export default withStyles(styles)(TemplatePicker);
