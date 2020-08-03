@@ -3,8 +3,6 @@ import { Paper, makeStyles, Typography } from "@material-ui/core";
 import cx from "classnames";
 import { Options } from "./interfaces";
 import WindowHeader from "./components/WindowHeader";
-import Editor from "@monaco-editor/react";
-import { grey } from "@material-ui/core/colors";
 
 const useStyles = makeStyles(({ spacing }) => ({
   root: {
@@ -13,7 +11,7 @@ const useStyles = makeStyles(({ spacing }) => ({
   overlay: {
     cursor: "pointer",
     position: "relative",
-    top: -191,
+    top: -151,
     left: 0 - spacing(2),
     right: 0,
     bottom: 0,
@@ -30,12 +28,8 @@ const useStyles = makeStyles(({ spacing }) => ({
     flexDirection: "column",
     overflow: "hidden",
     width: 300,
-    height: 120,
-    backgroundColor: grey[700],
+    height: 80,
     marginBottom: spacing(2),
-  },
-  content: {
-    flex: 1,
   },
   dark: {
     backgroundColor: "#54799D",
@@ -51,14 +45,7 @@ interface Props {
 const TemplatePreview = ({ className, onClick, options }: Props) => {
   const classes = useStyles();
   const [hovered, setHovered] = useState(false);
-  const {
-    fontColor,
-    fontFamily,
-    lightMode,
-    os,
-    language,
-    showLineNumbers,
-  } = options;
+  const { fontColor, fontFamily, lightMode, os } = options;
 
   return (
     <Paper
@@ -81,23 +68,6 @@ const TemplatePreview = ({ className, onClick, options }: Props) => {
         elevation={1}
       >
         <WindowHeader variant={os} />
-        <div className={classes.content}>
-          <Editor
-            height={"100px"}
-            width={"400px"}
-            language={language}
-            theme={lightMode ? "light" : "dark"}
-            value={`const fun = () => {
-  console.log("Hello World!")
-}`}
-            options={{
-              readOnly: true,
-              selectOnLineNumbers: false,
-              lineNumbers: showLineNumbers ? "on" : "off",
-              minimap: { enabled: false },
-            }}
-          />
-        </div>
       </Paper>
       <div
         className={cx(classes.overlay, { [classes.hovered]: hovered })}
