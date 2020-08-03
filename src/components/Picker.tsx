@@ -61,11 +61,11 @@ const Picker = ({
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: "center",
+          vertical: "top",
           horizontal: "right",
         }}
         transformOrigin={{
-          vertical: "center",
+          vertical: "top",
           horizontal: "left",
         }}
       >
