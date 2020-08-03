@@ -11,7 +11,7 @@ const useStyles = makeStyles(({ spacing }) => ({
   overlay: {
     cursor: "pointer",
     position: "relative",
-    top: -120,
+    top: `calc(-100% + ${spacing(2)}px)`,
     left: 0 - spacing(2),
     right: 0,
     bottom: 0,
