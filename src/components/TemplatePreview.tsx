@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Paper, makeStyles, Button } from "@material-ui/core";
+import React from "react";
+import { Button, makeStyles, Paper } from "@material-ui/core";
 import cx from "classnames";
 import { Options } from "../interfaces";
 import WindowHeader from "./WindowHeader";
