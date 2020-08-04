@@ -1,21 +1,24 @@
-import React, { ChangeEvent, ReactNode } from "react";
+import React from "react";
 import {
   createStyles,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
+  List,
+  ListItem,
+  ListItemText,
+  ListSubheader,
   Theme,
   withStyles,
   WithStyles,
 } from "@material-ui/core";
 import Picker from "./Picker";
 
-const styles = ({ spacing }: Theme) =>
+const styles = ({ palette }: Theme) =>
   createStyles({
-    formControl: {
-      margin: spacing(1),
-      minWidth: 120,
+    list: {
+      overflow: "auto",
+      maxHeight: 600,
+    },
+    listSubheader: {
+      backgroundColor: palette.background.paper,
     },
   });
 
@@ -37,29 +40,33 @@ const FontPicker = ({
   onChange,
   tooltip,
 }: Props & WithStyles<typeof styles>) => {
-  const handleChange = (event: ChangeEvent<ReactNode>) => {
-    const target = event.target as HTMLSelectElement;
-    onChange(target.value);
-  };
-
   return (
     <Picker id={id} icon={icon} tooltip={tooltip}>
-      <FormControl className={classes.formControl} variant={"outlined"}>
-        <InputLabel id={"font-select-label"}>Font Family</InputLabel>
-        <Select
-          labelId="font-select-label"
-          id="font-select"
-          onChange={(event) => handleChange(event)}
-          value={fontFamily}
-          label="Font Family"
-        >
-          {fontFamilies.map((font, index) => (
-            <MenuItem key={`${font}-${index}`} value={font}>
-              {font}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <List
+        className={classes.list}
+        component="nav"
+        aria-labelledby="nested-list-subheader"
+        subheader={
+          <ListSubheader
+            className={classes.listSubheader}
+            component="div"
+            id="nested-list-subheader"
+          >
+            Font Family
+          </ListSubheader>
+        }
+      >
+        {fontFamilies.map((font) => (
+          <ListItem
+            selected={font === fontFamily}
+            button
+            key={font}
+            onClick={() => onChange(font)}
+          >
+            <ListItemText>{font}</ListItemText>
+          </ListItem>
+        ))}
+      </List>
     </Picker>
   );
 };
