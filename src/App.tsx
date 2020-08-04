@@ -45,7 +45,6 @@ function App() {
     backgroundColor: "#FFFFFF",
     fontColor: "#000000",
     showLineNumbers: true,
-    lightMode: true,
     os: "windows10",
     language: "javascript",
     fontFamily: "Roboto",

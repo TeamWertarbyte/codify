@@ -3,7 +3,6 @@ import { Paper, makeStyles, Theme } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
 import Editor from "@monaco-editor/react";
 import WindowHeader from "./WindowHeader";
-import cx from "classnames";
 import { Options } from "../interfaces";
 
 const useStyles = makeStyles(({ spacing }: Theme) => ({
@@ -28,23 +27,17 @@ interface Props {
   options: Options;
 }
 
-const CodeEditor = ({
-  options: { lightMode, os, language, showLineNumbers },
-}: Props) => {
+const CodeEditor = ({ options: { os, language, showLineNumbers } }: Props) => {
   const classes = useStyles();
 
   return (
-    <Paper
-      className={cx(classes.root, { [classes.dark]: !lightMode })}
-      elevation={15}
-    >
+    <Paper className={classes.root} elevation={15}>
       <WindowHeader variant={os} />
       <div className={classes.content}>
         <Editor
           height={"300px"}
           width={"700px"}
           language={language}
-          theme={lightMode ? "light" : "dark"}
           value={`const fun = () => {
   console.log("Hello World!")
 }`}

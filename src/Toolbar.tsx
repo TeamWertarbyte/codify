@@ -9,8 +9,6 @@ import {
   FileDocumentOutline,
   FormatColorFill,
   FormatColorText,
-  Lightbulb,
-  LightbulbOutline,
   Text,
 } from "mdi-material-ui";
 import LanguagePicker from "./components/LanguagePicker";
@@ -84,24 +82,6 @@ const Toolbar = ({
         }
         activeIcon={<FormatListNumbers />}
         inactiveIcon={<Text />}
-      />
-      <ToolbarToggle
-        active={options.lightMode}
-        tooltip={options.lightMode ? "Dark Mode" : "Light Mode"}
-        onChange={(lightMode) => {
-          if (!lightMode) {
-            onChange({
-              ...options,
-              lightMode,
-              backgroundColor: "#383839",
-              fontColor: "#d3d3d3",
-            });
-          } else {
-            onChange({ ...options, lightMode });
-          }
-        }}
-        activeIcon={<LightbulbOutline />}
-        inactiveIcon={<Lightbulb />}
       />
       <OSPicker
         id={"operating-system"}

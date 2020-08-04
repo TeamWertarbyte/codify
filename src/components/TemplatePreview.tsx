@@ -16,9 +16,6 @@ const useStyles = makeStyles(({ spacing }) => ({
     width: 200,
     height: 80,
   },
-  dark: {
-    backgroundColor: "#54799D",
-  },
   title: {
     width: "70%",
     height: spacing(2),
@@ -29,14 +26,13 @@ const useStyles = makeStyles(({ spacing }) => ({
 }));
 
 interface Props {
-  className?: string;
   options: Options;
   onClick: () => void;
 }
 
-const TemplatePreview = ({ className, onClick, options }: Props) => {
+const TemplatePreview = ({ onClick, options }: Props) => {
   const classes = useStyles();
-  const { fontColor, lightMode, os } = options;
+  const { fontColor, os } = options;
 
   return (
     <Button
@@ -49,10 +45,7 @@ const TemplatePreview = ({ className, onClick, options }: Props) => {
     >
       <div>
         <div className={classes.title} style={{ backgroundColor: fontColor }} />
-        <Paper
-          className={cx(classes.editor, { [classes.dark]: !lightMode })}
-          elevation={1}
-        >
+        <Paper className={cx(classes.editor)} elevation={1}>
           <WindowHeader variant={os} />
         </Paper>
       </div>
