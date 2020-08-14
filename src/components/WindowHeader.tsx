@@ -1,7 +1,7 @@
 import React from "react";
 import { createStyles, Divider, IconButton, Theme } from "@material-ui/core";
 import cx from "classnames";
-import { green, grey, red, yellow } from "@material-ui/core/colors";
+import { grey, red } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   MenuSwap,
