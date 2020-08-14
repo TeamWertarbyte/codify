@@ -1,29 +1,15 @@
 import React, { useRef, useState } from "react";
 import "./App.css";
 import { Fab, makeStyles, Theme } from "@material-ui/core";
-import { saveAs } from "file-saver";
 import { grey } from "@material-ui/core/colors";
 // @ts-ignore
 import domtoimage from "dom-to-image-more";
-import {
-  Alphabetical,
-  CodeBraces,
-  Download,
-  FormatColorFill,
-  FormatColorText,
-  Lightbulb,
-  LightbulbOutline,
-  Text,
-} from "mdi-material-ui";
+import { Download } from "mdi-material-ui";
 import CaptureStage from "./components/CaptureStage";
-import ColorPicker from "./components/ColorPicker";
-import ToolbarToggle from "./components/ToolbarToggle";
-import { FormatListNumbers } from "mdi-material-ui/light";
-import LanguagePicker from "./components/LanguagePicker";
-import OSPicker from "./components/OSPicker";
-import FontPicker from "./components/FontPicker";
 import Header from "./Header";
 import Footer from "./Footer";
+import { Options } from "./interfaces";
+import Toolbar from "./Toolbar";
 
 const useStyles = makeStyles(({ spacing }: Theme) => ({
   root: {
@@ -34,12 +20,8 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
   content: {
     display: "flex",
     flex: 1,
-  },
-  toolbar: {
-    display: "flex",
-    flexDirection: "column",
-    backgroundColor: grey[300],
-    padding: spacing(1),
+    overflow: "hidden",
+    maxHeight: "100%",
   },
   captureStageContainer: {
     flex: 1,
@@ -54,102 +36,53 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
     bottom: spacing(6),
     right: spacing(2),
   },
-  options: {
-    padding: spacing(1),
-  },
 }));
 
 function App() {
   const classes = useStyles();
-  const stageRef = useRef();
-  const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
-  const [fontColor, setFontColor] = useState("#000000");
-  const [showLineNumbers, setShowLineNumbers] = useState(true);
-  const [lightMode, setLightMode] = useState(true);
-  const [os, setOS] = useState<"macOS" | "windows10" | "linuxMint">(
-    "windows10"
-  );
-  const [language, setLanguage] = useState<string>("javascript");
-
-  const fontFamilies = ["Segoe UI", "Roboto", "Arial"];
-  const [fontFamily, setFontFamily] = useState<string>(fontFamilies[1]);
+  const stageRef = useRef<HTMLElement>();
+  const [options, setOptions] = useState<Options>({
+    backgroundColor: "#FFFFFF",
+    fontColor: "#000000",
+    showLineNumbers: true,
+    os: "windows10",
+    language: "javascript",
+    fontFamily: "Roboto",
+  });
 
   const handleGenerateImage = () => {
-    domtoimage.toBlob(stageRef.current).then((blob: Blob) => {
-      saveAs(blob, `codify-${Date.now()}.png`);
-    });
+    const scale = 2;
+    const elm = stageRef.current;
+    if (elm) {
+      domtoimage
+        .toJpeg(elm, {
+          height: elm.offsetHeight * scale,
+          style: {
+            transform: `scale(${scale}) translate(${
+              elm.offsetWidth / 2 / scale
+            }px, ${elm.offsetHeight / 2 / scale}px)`,
+          },
+          width: elm.offsetWidth * scale,
+          quality: 0.95,
+        })
+        .then((dataUrl: string) => {
+          const link = document.createElement("a");
+          link.download = `codify-${Date.now()}.jpeg`;
+          link.href = dataUrl;
+          link.click();
+        });
+    }
   };
 
   return (
     <div className={classes.root}>
       <Header />
       <div className={classes.content}>
-        <div className={classes.toolbar}>
-          <ColorPicker
-            id="background-color"
-            tooltip="Background Color"
-            color={backgroundColor}
-            onChange={setBackgroundColor}
-            icon={<FormatColorFill />}
-          />
-          <ColorPicker
-            id="font-color"
-            tooltip="Text Color"
-            color={fontColor}
-            onChange={setFontColor}
-            icon={<FormatColorText />}
-          />
-          <LanguagePicker
-            id="code-language"
-            tooltip="Code language"
-            language={language}
-            onChange={setLanguage}
-            icon={<CodeBraces />}
-          />
-          <ToolbarToggle
-            active={showLineNumbers}
-            tooltip="Line Numbers"
-            onChange={setShowLineNumbers}
-            activeIcon={<FormatListNumbers />}
-            inactiveIcon={<Text />}
-          />
-          <ToolbarToggle
-            active={lightMode}
-            tooltip={lightMode ? "Dark Mode" : "Light Mode"}
-            onChange={(lightMode) => {
-              setLightMode(lightMode);
-              if (lightMode === false) {
-                setBackgroundColor("#383839");
-                setFontColor("#d3d3d3");
-              }
-            }}
-            activeIcon={<LightbulbOutline />}
-            inactiveIcon={<Lightbulb />}
-          />
-          <OSPicker id={"operating-system"} onChange={setOS} />
-          <FontPicker
-            id="font-family"
-            tooltip="Font family"
-            fontFamily={fontFamily}
-            fontFamilies={fontFamilies}
-            onChange={setFontFamily}
-            icon={<Alphabetical />}
-          />
-        </div>
+        <Toolbar options={options} onChange={setOptions} />
         <div className={classes.captureStageContainer}>
-          <CaptureStage
-            ref={stageRef}
-            backgroundColor={backgroundColor}
-            fontColor={fontColor}
-            fontFamily={fontFamily}
-            language={language}
-            lightMode={lightMode}
-            os={os}
-            showLineNumbers={showLineNumbers}
-          />
+          <CaptureStage ref={stageRef} options={options} />
         </div>
       </div>
-      <Footer />
       <Fab
         className={classes.fab}
         onClick={handleGenerateImage}
@@ -157,6 +90,7 @@ function App() {
       >
         <Download />
       </Fab>
+      <Footer />
     </div>
   );
 }

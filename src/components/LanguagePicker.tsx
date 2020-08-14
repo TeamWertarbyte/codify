@@ -1,22 +1,25 @@
-import React, { ChangeEvent, ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   createStyles,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
+  List,
+  ListItem,
+  ListItemText,
+  ListSubheader,
   Theme,
   withStyles,
   WithStyles,
 } from "@material-ui/core";
-import Picker from "./Picker";
 import { monaco } from "@monaco-editor/react";
+import Picker from "./Picker";
 
-const styles = ({ spacing }: Theme) =>
+const styles = ({ palette }: Theme) =>
   createStyles({
-    formControl: {
-      margin: spacing(1),
-      minWidth: 120,
+    list: {
+      overflow: "auto",
+      maxHeight: 600,
+    },
+    listSubheader: {
+      backgroundColor: palette.background.paper,
     },
   });
 
@@ -59,29 +62,33 @@ const LanguagePicker = ({
       );
   }, []);
 
-  const handleChange = (event: ChangeEvent<ReactNode>) => {
-    const target = event.target as HTMLSelectElement;
-    onChange(target.value);
-  };
-
   return (
     <Picker id={id} icon={icon} tooltip={tooltip}>
-      <FormControl className={classes.formControl} variant={"outlined"}>
-        <InputLabel id={"language-select-label"}>Language</InputLabel>
-        <Select
-          labelId="language-select-label"
-          id="language-select"
-          onChange={(event) => handleChange(event)}
-          value={language}
-          label="Language"
-        >
-          {languages.map(({ id, alias }, index) => (
-            <MenuItem key={id} value={id}>
-              {alias}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <List
+        className={classes.list}
+        component="nav"
+        aria-labelledby="nested-list-subheader"
+        subheader={
+          <ListSubheader
+            className={classes.listSubheader}
+            component="div"
+            id="nested-list-subheader"
+          >
+            Language
+          </ListSubheader>
+        }
+      >
+        {languages.map(({ id, alias }) => (
+          <ListItem
+            selected={id === language}
+            button
+            key={id}
+            onClick={() => onChange(id)}
+          >
+            <ListItemText>{alias}</ListItemText>
+          </ListItem>
+        ))}
+      </List>
     </Picker>
   );
 };

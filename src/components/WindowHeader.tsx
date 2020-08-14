@@ -15,11 +15,11 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
   createStyles({
     root: {
       display: "flex",
+      transition: "all 0.3s",
     },
     macOS: {
       backgroundColor: grey[300],
       backgroundImage: `linear-gradient(to bottom, #cecece, #b7b7b7)`,
-      padding: spacing(1),
     },
     windows10: {
       backgroundColor: "#fff",
@@ -49,13 +49,13 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
       width: spacing(1.125),
     },
     green: {
-      backgroundColor: green[500],
+      backgroundColor: "#54C22B",
     },
     yellow: {
-      backgroundColor: yellow[800],
+      backgroundColor: "#E6C029",
     },
     red: {
-      backgroundColor: red[500],
+      backgroundColor: "#FF5B51",
     },
     square: {
       borderRadius: 0,
