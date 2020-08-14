@@ -27,6 +27,9 @@ const styles = ({ spacing }: Theme) =>
       marginLeft: spacing(1),
       color: grey[700],
     },
+    hide: {
+      display: "none",
+    },
   });
 
 interface Props {
@@ -42,7 +45,10 @@ const Header = ({ classes, className }: Props & WithStyles<typeof styles>) => {
         Codify
       </Typography>
       <Tooltip title={"Toggle light/dark theme"} placement="bottom">
-        <IconButton onClick={() => setDarkMode((mode) => !mode)}>
+        <IconButton
+          className={classes.hide}
+          onClick={() => setDarkMode((mode) => !mode)}
+        >
           {darkMode ? <Lightbulb /> : <LightbulbOutline />}
         </IconButton>
       </Tooltip>
